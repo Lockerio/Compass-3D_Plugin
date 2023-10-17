@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="KAPITypes">
+      <HintPath>KAPITypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6API5">
+      <HintPath>Kompas6API5.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6Constants">
+      <HintPath>Kompas6Constants.dll</HintPath>
+    </Reference>
+    <Reference Include="KompasAPI7">
+      <HintPath>KompasAPI7.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
