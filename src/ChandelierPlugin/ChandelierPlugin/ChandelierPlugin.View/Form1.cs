@@ -16,5 +16,16 @@ namespace ChandelierPlugin.View
         {
             InitializeComponent();
         }
+
+
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                string name = textBox.Name;
+            }
+        }
+
+
     }
 }

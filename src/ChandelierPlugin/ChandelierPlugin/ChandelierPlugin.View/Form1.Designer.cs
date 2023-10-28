@@ -111,6 +111,7 @@
             this.textBox1.Size = new System.Drawing.Size(144, 22);
             this.textBox1.TabIndex = 6;
             this.textBox1.Text = "800";
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // textBox2
             // 
@@ -119,6 +120,7 @@
             this.textBox2.Size = new System.Drawing.Size(144, 22);
             this.textBox2.TabIndex = 7;
             this.textBox2.Text = "700";
+            this.textBox2.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // textBox3
             // 
@@ -127,6 +129,7 @@
             this.textBox3.Size = new System.Drawing.Size(144, 22);
             this.textBox3.TabIndex = 9;
             this.textBox3.Text = "60";
+            this.textBox3.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // textBox4
             // 
@@ -135,6 +138,7 @@
             this.textBox4.Size = new System.Drawing.Size(144, 22);
             this.textBox4.TabIndex = 8;
             this.textBox4.Text = "100";
+            this.textBox4.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // textBox5
             // 
@@ -143,6 +147,7 @@
             this.textBox5.Size = new System.Drawing.Size(144, 22);
             this.textBox5.TabIndex = 11;
             this.textBox5.Text = "20";
+            this.textBox5.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // textBox6
             // 
@@ -151,6 +156,7 @@
             this.textBox6.Size = new System.Drawing.Size(144, 22);
             this.textBox6.TabIndex = 10;
             this.textBox6.Text = "12";
+            this.textBox6.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label7
             // 
