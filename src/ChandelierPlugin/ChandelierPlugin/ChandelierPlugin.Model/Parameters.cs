@@ -14,5 +14,55 @@ namespace ChandelierPlugin.Model
         private double _foundationThickness;
         private int _lampsAmount;
         private double _lampRadius;
+
+        public double RadiusOuterCircle
+        {
+            get { return _radiusOuterCircle; }
+            set { _radiusOuterCircle = value; }
+        }
+
+        public double RadiusInnerCircle
+        {
+            get { return _radiusInnerCircle; }
+            set { _radiusInnerCircle = value; }
+        }
+
+        public double RadiusBaseCircle
+        {
+            get { return _radiusBaseCircle; }
+            set { _radiusBaseCircle = value; }
+        }
+
+        public double FoundationThickness
+        {
+            get { return _foundationThickness; }
+            set { _foundationThickness = value; }
+        }
+
+        public int LampsAmount
+        {
+            get { return _lampsAmount; }
+            set { _lampsAmount = value; }
+        }
+
+        public double LampRadius
+        {
+            get { return _lampRadius; }
+            set { _lampRadius = value; }
+        }
+
+        public Dictionary<string, object> GetParametersAsDict()
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                { "RadiusOuterCircle", RadiusOuterCircle },
+                { "RadiusInnerCircle", RadiusInnerCircle },
+                { "RadiusBaseCircle", RadiusBaseCircle },
+                { "FoundationThickness", FoundationThickness },
+                { "LampsAmount", LampsAmount },
+                { "LampRadius", LampRadius }
+            };
+            return parameters;
+        }
     }
 }
