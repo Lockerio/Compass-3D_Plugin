@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChandelierPlugin.Model\ChandelierPlugin.Model.csproj">
+      <Project>{c0affec4-8fd8-4336-94f2-50b4696eb7a9}</Project>
+      <Name>ChandelierPlugin.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

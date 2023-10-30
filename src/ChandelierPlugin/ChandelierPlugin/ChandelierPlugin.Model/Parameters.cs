@@ -51,6 +51,16 @@ namespace ChandelierPlugin.Model
             set { _lampRadius = value; }
         }
 
+        public Parameters()
+        {
+            RadiusOuterCircle = 800;
+            RadiusInnerCircle = 700;
+            RadiusBaseCircle = 100;
+            FoundationThickness = 60;
+            LampsAmount = 12;
+            LampRadius = 20;
+        }
+
         public Dictionary<string, object> GetParametersAsDict()
         {
             var parameters = new Dictionary<string, object>

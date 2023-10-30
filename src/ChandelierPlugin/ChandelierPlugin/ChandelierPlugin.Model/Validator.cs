@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ChandelierPlugin.Model
 {
-    public class Validator
+    public static class Validator
     {
-        private bool IsNumberInRange(double value, double min, double max) 
+        private static bool IsNumberInRange(double value, double min, double max)
         {
             if (min < value && value < max)
                 return true;
             return false;
         }
 
-        public void AssertNumberIsInRange(double value, double min, double max)
+        public static void AssertNumberIsInRange(double value, double min, double max)
         {
             if (IsNumberInRange(value, min, max))
                 return;

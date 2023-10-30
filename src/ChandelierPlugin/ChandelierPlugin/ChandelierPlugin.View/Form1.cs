@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChandelierPlugin.Model;
 
 namespace ChandelierPlugin.View
 {
@@ -16,7 +17,8 @@ namespace ChandelierPlugin.View
         {
             InitializeComponent();
         }
-
+        
+        private Parameters parameters = new Parameters();
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
