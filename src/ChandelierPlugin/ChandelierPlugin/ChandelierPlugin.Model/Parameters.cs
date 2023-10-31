@@ -9,34 +9,35 @@ namespace ChandelierPlugin.Model
 {
     public class Parameters
     {
-        private Dictionary<ParameterType, Parameter> parametersDict;
+        private Dictionary<ParameterType, Parameter> _parametersDict;
 
-        public Dictionary<ParameterType, Parameter> ParametersDict
-        {
-            set { parametersDict = value; }
-            get { return parametersDict; }
-        }
+        public Dictionary<ParameterType, Parameter> ParametersDict = new Dictionary<ParameterType, Parameter>();
 
-        Parameters(Dictionary<ParameterType, Parameter> parametersDict)
+        public Parameters(Dictionary<ParameterType, Parameter> parametersDict)
         {
             this.ParametersDict = parametersDict;
         }
 
-        Parameters() 
+        public Parameters() 
         {
-            parametersDict.Add(ParameterType.RadiusOuterCircle, new Parameter(800, 400, 1000));
-            parametersDict.Add(ParameterType.RadiusInnerCircle, new Parameter(700, 150, 750));
-            parametersDict.Add(ParameterType.RadiusBaseCircle, new Parameter(100, 100, 100));
-            parametersDict.Add(ParameterType.FoundationThickness, new Parameter(60, 40, 80));
-            parametersDict.Add(ParameterType.LampsAmount, new Parameter(12, 0, 109));
-            parametersDict.Add(ParameterType.LampRadius, new Parameter(20, 15, 25));
+            ParametersDict.Add(ParameterType.RadiusOuterCircle, new Parameter(800, 1000, 400));
+            ParametersDict.Add(ParameterType.RadiusInnerCircle, new Parameter(700, 750, 150));
+            ParametersDict.Add(ParameterType.RadiusBaseCircle, new Parameter(100, 100, 100));
+            ParametersDict.Add(ParameterType.FoundationThickness, new Parameter(60, 80, 40));
+            ParametersDict.Add(ParameterType.LampsAmount, new Parameter(12, 109, 0));
+            ParametersDict.Add(ParameterType.LampRadius, new Parameter(20, 25, 15));
         }
 
         public void AssertParameter(ParameterType parameterType, Parameter parameter, double value)
         {
-            Validator.AssertNumberIsInRange(value, parameter.MaxValue, parameter.MinValue);
+            Validator.AssertNumberIsInRange(value, parameter.MinValue, parameter.MaxValue);
+            this.ParametersDict[parameterType].CurrentValue = value;
+            this.ChangeParametersRangeValues(parameterType, parameter);
 
-            parameter.CurrentValue = value;
+            foreach (var param in this.ParametersDict.Values)
+            {
+                Validator.AssertNumberIsInRange(param.CurrentValue, param.MinValue, param.MaxValue);
+            }
         }
 
         private void ChangeParametersRangeValues(ParameterType parameterType, Parameter parameter)
@@ -57,9 +58,8 @@ namespace ChandelierPlugin.Model
                     break;
 
                 case ParameterType.LampRadius:
-                    var _innerRadius = this.ParametersDict[ParameterType.RadiusInnerCircle].CurrentValue;
-                    var _lampRadius = this.ParametersDict[ParameterType.LampRadius].CurrentValue;
-
+                    double _innerRadius = this.ParametersDict[ParameterType.RadiusInnerCircle].CurrentValue;
+                    double _lampRadius = this.ParametersDict[ParameterType.LampRadius].CurrentValue;
                     int _maxValue = (int)(_innerRadius * Math.PI / _lampRadius);
 
                     this.ParametersDict[ParameterType.LampsAmount].MaxValue = _maxValue;

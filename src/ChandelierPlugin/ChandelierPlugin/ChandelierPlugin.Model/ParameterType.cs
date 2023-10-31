@@ -14,5 +14,6 @@ namespace ChandelierPlugin.Model
         FoundationThickness,
         LampsAmount,
         LampRadius,
+        Unknown,
     }
 }
