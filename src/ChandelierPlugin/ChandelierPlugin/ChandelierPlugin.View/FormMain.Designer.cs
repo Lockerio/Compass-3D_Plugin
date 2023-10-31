@@ -1,6 +1,6 @@
 ﻿namespace ChandelierPlugin.View
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -34,12 +34,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox_RadiusOuterCircle = new System.Windows.Forms.TextBox();
+            this.textBox_RadiusInnerCircle = new System.Windows.Forms.TextBox();
+            this.textBox_FoundationThickness = new System.Windows.Forms.TextBox();
+            this.textBox_RadiusBaseCircle = new System.Windows.Forms.TextBox();
+            this.textBox_LampRadius = new System.Windows.Forms.TextBox();
+            this.textBox_LampsAmount = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -103,60 +103,60 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Радиус лампочки:";
             // 
-            // textBox1
+            // textBox_RadiusOuterCircle
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(262, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 22);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Text = "800";
-            this.textBox1.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.textBox_RadiusOuterCircle.BackColor = System.Drawing.Color.White;
+            this.textBox_RadiusOuterCircle.Location = new System.Drawing.Point(262, 38);
+            this.textBox_RadiusOuterCircle.Name = "textBox_RadiusOuterCircle";
+            this.textBox_RadiusOuterCircle.Size = new System.Drawing.Size(144, 22);
+            this.textBox_RadiusOuterCircle.TabIndex = 6;
+            this.textBox_RadiusOuterCircle.Text = "800";
+            this.textBox_RadiusOuterCircle.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
-            // textBox2
+            // textBox_RadiusInnerCircle
             // 
-            this.textBox2.Location = new System.Drawing.Point(262, 67);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(144, 22);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "700";
-            this.textBox2.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.textBox_RadiusInnerCircle.Location = new System.Drawing.Point(262, 67);
+            this.textBox_RadiusInnerCircle.Name = "textBox_RadiusInnerCircle";
+            this.textBox_RadiusInnerCircle.Size = new System.Drawing.Size(144, 22);
+            this.textBox_RadiusInnerCircle.TabIndex = 7;
+            this.textBox_RadiusInnerCircle.Text = "700";
+            this.textBox_RadiusInnerCircle.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
-            // textBox3
+            // textBox_FoundationThickness
             // 
-            this.textBox3.Location = new System.Drawing.Point(262, 124);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(144, 22);
-            this.textBox3.TabIndex = 9;
-            this.textBox3.Text = "60";
-            this.textBox3.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.textBox_FoundationThickness.Location = new System.Drawing.Point(262, 124);
+            this.textBox_FoundationThickness.Name = "textBox_FoundationThickness";
+            this.textBox_FoundationThickness.Size = new System.Drawing.Size(144, 22);
+            this.textBox_FoundationThickness.TabIndex = 9;
+            this.textBox_FoundationThickness.Text = "60";
+            this.textBox_FoundationThickness.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
-            // textBox4
+            // textBox_RadiusBaseCircle
             // 
-            this.textBox4.Location = new System.Drawing.Point(262, 95);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(144, 22);
-            this.textBox4.TabIndex = 8;
-            this.textBox4.Text = "100";
-            this.textBox4.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.textBox_RadiusBaseCircle.Location = new System.Drawing.Point(262, 95);
+            this.textBox_RadiusBaseCircle.Name = "textBox_RadiusBaseCircle";
+            this.textBox_RadiusBaseCircle.Size = new System.Drawing.Size(144, 22);
+            this.textBox_RadiusBaseCircle.TabIndex = 8;
+            this.textBox_RadiusBaseCircle.Text = "100";
+            this.textBox_RadiusBaseCircle.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
-            // textBox5
+            // textBox_LampRadius
             // 
-            this.textBox5.Location = new System.Drawing.Point(262, 181);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(144, 22);
-            this.textBox5.TabIndex = 11;
-            this.textBox5.Text = "20";
-            this.textBox5.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.textBox_LampRadius.Location = new System.Drawing.Point(262, 181);
+            this.textBox_LampRadius.Name = "textBox_LampRadius";
+            this.textBox_LampRadius.Size = new System.Drawing.Size(144, 22);
+            this.textBox_LampRadius.TabIndex = 11;
+            this.textBox_LampRadius.Text = "20";
+            this.textBox_LampRadius.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
-            // textBox6
+            // textBox_LampsAmount
             // 
-            this.textBox6.Location = new System.Drawing.Point(262, 152);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(144, 22);
-            this.textBox6.TabIndex = 10;
-            this.textBox6.Text = "12";
-            this.textBox6.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.textBox_LampsAmount.Location = new System.Drawing.Point(262, 152);
+            this.textBox_LampsAmount.Name = "textBox_LampsAmount";
+            this.textBox_LampsAmount.Size = new System.Drawing.Size(144, 22);
+            this.textBox_LampsAmount.TabIndex = 10;
+            this.textBox_LampsAmount.Text = "12";
+            this.textBox_LampsAmount.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label7
             // 
@@ -222,7 +222,7 @@
             this.button1.Text = "Построить";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -234,20 +234,21 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_LampRadius);
+            this.Controls.Add(this.textBox_LampsAmount);
+            this.Controls.Add(this.textBox_FoundationThickness);
+            this.Controls.Add(this.textBox_RadiusBaseCircle);
+            this.Controls.Add(this.textBox_RadiusInnerCircle);
+            this.Controls.Add(this.textBox_RadiusOuterCircle);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "ChandelierPlugin";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,12 +262,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox_RadiusOuterCircle;
+        private System.Windows.Forms.TextBox textBox_RadiusInnerCircle;
+        private System.Windows.Forms.TextBox textBox_FoundationThickness;
+        private System.Windows.Forms.TextBox textBox_RadiusBaseCircle;
+        private System.Windows.Forms.TextBox textBox_LampRadius;
+        private System.Windows.Forms.TextBox textBox_LampsAmount;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;

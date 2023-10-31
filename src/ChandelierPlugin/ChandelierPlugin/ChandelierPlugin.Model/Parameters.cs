@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,71 +9,62 @@ namespace ChandelierPlugin.Model
 {
     public class Parameters
     {
-        private double _radiusOuterCircle;
-        private double _radiusInnerCircle;
-        private double _radiusBaseCircle;
-        private double _foundationThickness;
-        private int _lampsAmount;
-        private double _lampRadius;
+        private Dictionary<ParameterType, Parameter> parametersDict;
 
-        public double RadiusOuterCircle
+        public Dictionary<ParameterType, Parameter> ParametersDict
         {
-            get { return _radiusOuterCircle; }
-            set { _radiusOuterCircle = value; }
+            set { parametersDict = value; }
+            get { return parametersDict; }
         }
 
-        public double RadiusInnerCircle
+        Parameters(Dictionary<ParameterType, Parameter> parametersDict)
         {
-            get { return _radiusInnerCircle; }
-            set { _radiusInnerCircle = value; }
+            this.ParametersDict = parametersDict;
         }
 
-        public double RadiusBaseCircle
+        Parameters() 
         {
-            get { return _radiusBaseCircle; }
-            set { _radiusBaseCircle = value; }
+            parametersDict.Add(ParameterType.RadiusOuterCircle, new Parameter(800, 400, 1000));
+            parametersDict.Add(ParameterType.RadiusInnerCircle, new Parameter(700, 150, 750));
+            parametersDict.Add(ParameterType.RadiusBaseCircle, new Parameter(100, 100, 100));
+            parametersDict.Add(ParameterType.FoundationThickness, new Parameter(60, 40, 80));
+            parametersDict.Add(ParameterType.LampsAmount, new Parameter(12, 0, 109));
+            parametersDict.Add(ParameterType.LampRadius, new Parameter(20, 15, 25));
         }
 
-        public double FoundationThickness
+        public void AssertParameter(ParameterType parameterType, Parameter parameter, double value)
         {
-            get { return _foundationThickness; }
-            set { _foundationThickness = value; }
+            Validator.AssertNumberIsInRange(value, parameter.MaxValue, parameter.MinValue);
+
+            parameter.CurrentValue = value;
         }
 
-        public int LampsAmount
+        private void ChangeParametersRangeValues(ParameterType parameterType, Parameter parameter)
         {
-            get { return _lampsAmount; }
-            set { _lampsAmount = value; }
-        }
-
-        public double LampRadius
-        {
-            get { return _lampRadius; }
-            set { _lampRadius = value; }
-        }
-
-        public Parameters()
-        {
-            RadiusOuterCircle = 800;
-            RadiusInnerCircle = 700;
-            RadiusBaseCircle = 100;
-            FoundationThickness = 60;
-            LampsAmount = 12;
-            LampRadius = 20;
-        }
-
-        public Dictionary<string, object> GetParametersAsDict()
-        {
-            var parameters = new Dictionary<string, object>
+            switch (parameterType) 
             {
-                { "RadiusOuterCircle", RadiusOuterCircle },
-                { "RadiusInnerCircle", RadiusInnerCircle },
-                { "RadiusBaseCircle", RadiusBaseCircle },
-                { "FoundationThickness", FoundationThickness },
-                { "LampsAmount", LampsAmount },
-                { "LampRadius", LampRadius }
-            };
-            return parameters;
+                case ParameterType.RadiusOuterCircle:
+                    this.ParametersDict[ParameterType.RadiusInnerCircle].MaxValue = parameter.CurrentValue - 50; 
+                    break;
+
+                case ParameterType.RadiusInnerCircle:
+                    this.ParametersDict[ParameterType.RadiusOuterCircle].MinValue = parameter.CurrentValue + 50;
+                    this.ParametersDict[ParameterType.RadiusBaseCircle].MaxValue = parameter.CurrentValue - 50;
+                    break;
+
+                case ParameterType.RadiusBaseCircle:
+                    this.ParametersDict[ParameterType.RadiusInnerCircle].MinValue= parameter.CurrentValue + 50;
+                    break;
+
+                case ParameterType.LampRadius:
+                    var _innerRadius = this.ParametersDict[ParameterType.RadiusInnerCircle].CurrentValue;
+                    var _lampRadius = this.ParametersDict[ParameterType.LampRadius].CurrentValue;
+
+                    int _maxValue = (int)(_innerRadius * Math.PI / _lampRadius);
+
+                    this.ParametersDict[ParameterType.LampsAmount].MaxValue = _maxValue;
+                    break;
+            }
         }
     }
 }
