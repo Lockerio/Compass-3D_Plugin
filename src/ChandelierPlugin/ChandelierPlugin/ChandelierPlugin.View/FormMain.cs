@@ -91,7 +91,7 @@ namespace ChandelierPlugin.View
                     Parameter _parameter = parameters.ParametersDict[parameterType];
                     var _minValue = _parameter.MinValue;
                     var _maxValue = _parameter.MaxValue;
-                    var message = ex.Message + $"Введите число от {_minValue} до {_maxValue}";
+                    var message = ex.Message + $"\nВведите число от {_minValue} до {_maxValue}";
                     parameterFormElements[parameterType]["label"].Text = message;
                     parameterFormElements[parameterType]["textBox"].BackColor = errorColor;
                 }
