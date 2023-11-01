@@ -157,54 +157,48 @@
             this.label_LampRadius.AutoSize = true;
             this.label_LampRadius.Location = new System.Drawing.Point(412, 184);
             this.label_LampRadius.Name = "label_LampRadius";
-            this.label_LampRadius.Size = new System.Drawing.Size(96, 16);
+            this.label_LampRadius.Size = new System.Drawing.Size(0, 16);
             this.label_LampRadius.TabIndex = 17;
-            this.label_LampRadius.Text = "от 15 до 25 мм";
             // 
             // label_LampsAmount
             // 
             this.label_LampsAmount.AutoSize = true;
             this.label_LampsAmount.Location = new System.Drawing.Point(412, 155);
             this.label_LampsAmount.Name = "label_LampsAmount";
-            this.label_LampsAmount.Size = new System.Drawing.Size(67, 16);
+            this.label_LampsAmount.Size = new System.Drawing.Size(0, 16);
             this.label_LampsAmount.TabIndex = 16;
-            this.label_LampsAmount.Text = "n < 109 шт";
             // 
             // label_FoundationThickness
             // 
             this.label_FoundationThickness.AutoSize = true;
             this.label_FoundationThickness.Location = new System.Drawing.Point(412, 127);
             this.label_FoundationThickness.Name = "label_FoundationThickness";
-            this.label_FoundationThickness.Size = new System.Drawing.Size(96, 16);
+            this.label_FoundationThickness.Size = new System.Drawing.Size(0, 16);
             this.label_FoundationThickness.TabIndex = 15;
-            this.label_FoundationThickness.Text = "от 40 до 80 мм";
             // 
             // label_RadiusBaseCircle
             // 
             this.label_RadiusBaseCircle.AutoSize = true;
             this.label_RadiusBaseCircle.Location = new System.Drawing.Point(412, 98);
             this.label_RadiusBaseCircle.Name = "label_RadiusBaseCircle";
-            this.label_RadiusBaseCircle.Size = new System.Drawing.Size(110, 16);
+            this.label_RadiusBaseCircle.Size = new System.Drawing.Size(0, 16);
             this.label_RadiusBaseCircle.TabIndex = 14;
-            this.label_RadiusBaseCircle.Text = "от 100 до 200 мм";
             // 
             // label_RadiusInnerCircle
             // 
             this.label_RadiusInnerCircle.AutoSize = true;
             this.label_RadiusInnerCircle.Location = new System.Drawing.Point(412, 70);
             this.label_RadiusInnerCircle.Name = "label_RadiusInnerCircle";
-            this.label_RadiusInnerCircle.Size = new System.Drawing.Size(110, 16);
+            this.label_RadiusInnerCircle.Size = new System.Drawing.Size(0, 16);
             this.label_RadiusInnerCircle.TabIndex = 13;
-            this.label_RadiusInnerCircle.Text = "от 150 до 750 мм";
             // 
             // label_RadiusOuterCircle
             // 
             this.label_RadiusOuterCircle.AutoSize = true;
             this.label_RadiusOuterCircle.Location = new System.Drawing.Point(412, 41);
             this.label_RadiusOuterCircle.Name = "label_RadiusOuterCircle";
-            this.label_RadiusOuterCircle.Size = new System.Drawing.Size(117, 16);
+            this.label_RadiusOuterCircle.Size = new System.Drawing.Size(0, 16);
             this.label_RadiusOuterCircle.TabIndex = 12;
-            this.label_RadiusOuterCircle.Text = "от 400 до 1000 мм";
             // 
             // button1
             // 

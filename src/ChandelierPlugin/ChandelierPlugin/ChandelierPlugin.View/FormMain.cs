@@ -23,6 +23,9 @@ namespace ChandelierPlugin.View
         private Dictionary<ParameterType, Dictionary<string, Control>> parameterFormElements = 
             new Dictionary<ParameterType, Dictionary<string, Control>>();
 
+        private Color defaultColor = Color.White;
+        private Color errorColor = Color.FromArgb(255, 192, 192);
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             parameterFormElements.Add(ParameterType.RadiusOuterCircle, new Dictionary<string, Control>
@@ -81,11 +84,16 @@ namespace ChandelierPlugin.View
                 {
                     parameters.AssertParameter(parameterType, parameters.ParametersDict[parameterType], Convert.ToDouble(textBox.Text));
                     SetTextFormElements();
-                    Console.WriteLine(1);
+                    parameterFormElements[parameterType]["textBox"].BackColor = defaultColor;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Parameter _parameter = parameters.ParametersDict[parameterType];
+                    var _minValue = _parameter.MinValue;
+                    var _maxValue = _parameter.MaxValue;
+                    var message = ex.Message + $"Введите число от {_minValue} до {_maxValue}";
+                    parameterFormElements[parameterType]["label"].Text = message;
+                    parameterFormElements[parameterType]["textBox"].BackColor = errorColor;
                 }
             }
         }

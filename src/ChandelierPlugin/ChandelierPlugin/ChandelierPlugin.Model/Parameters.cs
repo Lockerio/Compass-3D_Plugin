@@ -33,11 +33,6 @@ namespace ChandelierPlugin.Model
             Validator.AssertNumberIsInRange(value, parameter.MinValue, parameter.MaxValue);
             this.ParametersDict[parameterType].CurrentValue = value;
             this.ChangeParametersRangeValues(parameterType, parameter);
-
-            foreach (var param in this.ParametersDict.Values)
-            {
-                Validator.AssertNumberIsInRange(param.CurrentValue, param.MinValue, param.MaxValue);
-            }
         }
 
         private void ChangeParametersRangeValues(ParameterType parameterType, Parameter parameter)
@@ -45,16 +40,16 @@ namespace ChandelierPlugin.Model
             switch (parameterType) 
             {
                 case ParameterType.RadiusOuterCircle:
-                    this.ParametersDict[ParameterType.RadiusInnerCircle].MaxValue = parameter.CurrentValue - 50; 
+                    this.ParametersDict[ParameterType.RadiusInnerCircle].MaxValue = parameter.CurrentValue - 49; 
                     break;
 
                 case ParameterType.RadiusInnerCircle:
-                    this.ParametersDict[ParameterType.RadiusOuterCircle].MinValue = parameter.CurrentValue + 50;
-                    this.ParametersDict[ParameterType.RadiusBaseCircle].MaxValue = parameter.CurrentValue - 50;
+                    this.ParametersDict[ParameterType.RadiusOuterCircle].MinValue = parameter.CurrentValue + 49;
+                    this.ParametersDict[ParameterType.RadiusBaseCircle].MaxValue = parameter.CurrentValue - 49;
                     break;
 
                 case ParameterType.RadiusBaseCircle:
-                    this.ParametersDict[ParameterType.RadiusInnerCircle].MinValue= parameter.CurrentValue + 50;
+                    this.ParametersDict[ParameterType.RadiusInnerCircle].MinValue= parameter.CurrentValue + 49;
                     break;
 
                 case ParameterType.LampRadius:

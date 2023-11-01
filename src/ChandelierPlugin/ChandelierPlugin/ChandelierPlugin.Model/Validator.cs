@@ -10,7 +10,7 @@ namespace ChandelierPlugin.Model
     {
         private static bool IsNumberInRange(double value, double min, double max)
         {
-            if (min < value && value < max)
+            if (min <= value && value <= max)
                 return true;
             return false;
         }
