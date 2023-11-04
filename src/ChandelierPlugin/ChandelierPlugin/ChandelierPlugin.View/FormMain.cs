@@ -107,8 +107,6 @@ namespace ChandelierPlugin.View
 
                 parameterFormElements[_key]["textBox"].Text = _value.CurrentValue.ToString();
                 parameterFormElements[_key]["label"].Text = $"от {_value.MinValue} до {_value.MaxValue}";
-
-                Console.WriteLine(parameterFormElements[_key]["textBox"].Text);
             }
         }
     }
