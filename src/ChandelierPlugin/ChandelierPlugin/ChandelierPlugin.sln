@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChandelierPlugin.View", "Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChandelierPlugin.Model", "ChandelierPlugin.Model\ChandelierPlugin.Model.csproj", "{C0AFFEC4-8FD8-4336-94F2-50B4696EB7A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{28B149DB-3163-40A5-A876-90AF844719A7}"
+	ProjectSection(SolutionItems) = preProject
+		Libraries\KAPITypes.dll = Libraries\KAPITypes.dll
+		Libraries\Kompas6API5.dll = Libraries\Kompas6API5.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
