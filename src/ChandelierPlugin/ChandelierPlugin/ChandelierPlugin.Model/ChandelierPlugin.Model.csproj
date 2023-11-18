@@ -49,6 +49,10 @@
     <Compile Include="Validator.cs" />
     <Compile Include="Wrapper.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\KAPITypes.dll" />
+    <Content Include="Libs\Kompas6API5.dll" />
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
