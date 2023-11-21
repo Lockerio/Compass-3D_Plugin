@@ -19,6 +19,7 @@ namespace ChandelierPlugin.View
         }
         
         private Parameters parameters = new Parameters();
+        private Builder builder = new Builder();
 
         private Dictionary<ParameterType, Dictionary<string, Control>> parameterFormElements = 
             new Dictionary<ParameterType, Dictionary<string, Control>>();
@@ -108,6 +109,11 @@ namespace ChandelierPlugin.View
                 parameterFormElements[_key]["textBox"].Text = _value.CurrentValue.ToString();
                 parameterFormElements[_key]["label"].Text = $"от {_value.MinValue} до {_value.MaxValue}";
             }
+        }
+
+        private void buttonBuild_Click(object sender, EventArgs e)
+        {
+            builder.BuildDetail(parameters);
         }
     }
 }

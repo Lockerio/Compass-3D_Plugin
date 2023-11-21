@@ -46,7 +46,7 @@
             this.label_RadiusBaseCircle = new System.Windows.Forms.Label();
             this.label_RadiusInnerCircle = new System.Windows.Forms.Label();
             this.label_RadiusOuterCircle = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonBuild = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -200,22 +200,23 @@
             this.label_RadiusOuterCircle.Size = new System.Drawing.Size(0, 16);
             this.label_RadiusOuterCircle.TabIndex = 12;
             // 
-            // button1
+            // buttonBuild
             // 
-            this.button1.Location = new System.Drawing.Point(726, 289);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.button1.Size = new System.Drawing.Size(100, 32);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Построить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonBuild.Location = new System.Drawing.Point(726, 289);
+            this.buttonBuild.Name = "buttonBuild";
+            this.buttonBuild.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.buttonBuild.Size = new System.Drawing.Size(100, 32);
+            this.buttonBuild.TabIndex = 18;
+            this.buttonBuild.Text = "Построить";
+            this.buttonBuild.UseVisualStyleBackColor = true;
+            this.buttonBuild.Click += new System.EventHandler(this.buttonBuild_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 333);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonBuild);
             this.Controls.Add(this.label_LampRadius);
             this.Controls.Add(this.label_LampsAmount);
             this.Controls.Add(this.label_FoundationThickness);
@@ -265,7 +266,7 @@
         private System.Windows.Forms.Label label_RadiusBaseCircle;
         private System.Windows.Forms.Label label_RadiusInnerCircle;
         private System.Windows.Forms.Label label_RadiusOuterCircle;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonBuild;
     }
 }
 

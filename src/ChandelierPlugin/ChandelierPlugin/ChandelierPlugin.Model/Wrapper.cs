@@ -6,43 +6,36 @@ using System.Text;
 using System.Threading.Tasks;
 using KAPITypes;
 using Kompas6API5;
+using Kompas6Constants;
+using Kompas6Constants3D;
+using KompasAPI7;
+using KompasLibrary;
 
 namespace ChandelierPlugin.Model
 {
     public class Wrapper
     {
-        public void ConnectOrOpenCAD()
-        {
-            // Создаем экземпляр KOMPAS-3D
-            KompasObject kompas = null;
-            try
-            {
-                kompas = (KompasObject)Activator.CreateInstance(Type.GetTypeFromProgID("KOMPAS.Application.5"));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ошибка при создании экземпляра KOMPAS-3D: " + ex.Message);
-                return;
-            }
+        private KompasObject _kompas;
 
-            // Подключаемся к активной сессии KOMPAS-3D
+        public KompasObject Kompas
+        {
+            get => _kompas;
+        }
+
+        public bool ConnectToKompas()
+        {
             try
             {
-                kompas.Visible = true; // Делаем KOMPAS-3D видимым
-                kompas.ActivateControllerAPI(); // Активируем API контроллера
+                _kompas = (KompasObject)Activator.CreateInstance(Type.GetTypeFromProgID("KOMPAS.Application.5"));
+                _kompas.Visible = true;
+                _kompas.ActivateControllerAPI();
                 Console.WriteLine("Успешно подключено к активной сессии KOMPAS-3D");
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Ошибка при подключении к активной сессии KOMPAS-3D: " + ex.Message);
-            }
-            finally
-            {
-                // Освобождаем ресурсы
-                if (kompas != null)
-                {
-                    Marshal.ReleaseComObject(kompas);
-                }
+                return false;
             }
         }
     }
