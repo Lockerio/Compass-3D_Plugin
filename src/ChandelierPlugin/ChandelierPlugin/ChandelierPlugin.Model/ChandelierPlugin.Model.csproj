@@ -49,10 +49,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Libs\Kompas6Constants.dll</HintPath>
     </Reference>
-    <Reference Include="Kompas6Constants3D1">
-      <HintPath>Libs\Kompas6Constants3D.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="KompasAPI7, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
