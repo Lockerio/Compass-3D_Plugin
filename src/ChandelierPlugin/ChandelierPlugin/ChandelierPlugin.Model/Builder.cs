@@ -52,21 +52,35 @@ namespace ChandelierPlugin.Model
 
             BuildBase(radiusInnerCircle, radiusOuterCircle, radiusBaseCircle);
 
-            //BuildExtrusion(foundationThickness);
+            BuildWiresTubes(15);
             //BuildWiresTubes(radiusBaseCircle, 20, foundationThickness / 2);
             //BuildLamps(lampsAmount, lampRadius);
         }
 
         private void BuildBase(double radiusInnerCircle, double radiusOuterCircle, double radiusBaseCircle)
         {
-            var sketch = this.CreateSketch(Obj3dType.o3d_planeXOZ, null);
+            var sketch = this.CreateSketch(Obj3dType.o3d_planeXOY, null);
             var document2d = (ksDocument2D)sketch.BeginEdit();
+
             document2d.ksCircle(0, 0, radiusBaseCircle, 1);
             document2d.ksCircle(0, 0, radiusInnerCircle, 1);
             document2d.ksCircle(0, 0, radiusOuterCircle, 1);
             sketch.EndEdit();
 
-            СreateExtrusion(sketch, foundationThickness, true);
+            this.СreateExtrusion(sketch, this.foundationThickness, true);
+        }
+
+        private void BuildWiresTubes(double radius)
+        {
+            var offsetWidthEntity = this.CreateOffsetPlane(Obj3dType.o3d_planeXOZ, this.radiusBaseCircle);
+            var sketch = this.CreateSketch(Obj3dType.o3d_planeXOZ, offsetWidthEntity);
+            var document2d = (ksDocument2D)sketch.BeginEdit();
+
+            document2d.ksCircle(0, -this.foundationThickness / 2, radius, 1);
+            sketch.EndEdit();
+
+            this.СreateExtrusionToNearSurface(sketch, false);
+            this.СreateExtrusionToNearSurface(sketch, true);
         }
 
         private void BuildLamps(int lampsAmount, double lampRadius)
@@ -74,32 +88,16 @@ namespace ChandelierPlugin.Model
 
         }
 
-        private void BuildWiresTubes(double distanceFromOrigin, double radius, double sketchHeight)
+        private ksEntity CreateOffsetPlane(Obj3dType plane, double offset)
         {
-            const int pTop_part = -1;
-            const int o3d_sketch = 5;
-            const int o3d_planeYOZ = 4;
-
-
-            // Создаем плоскость YOZ
-            ksEntity planeYOZ = _part.NewEntity(o3d_sketch);
-            ksSketchDefinition planeYOZDefinition = planeYOZ.GetDefinition();
-            ksEntity entityPlaneYOZ = _part.GetDefaultEntity(o3d_planeYOZ);
-            planeYOZDefinition.SetPlane(entityPlaneYOZ);
-            planeYOZ.Create();
-
-            // Входим в режим редактирования эскиза
-            ksDocument2D planeYOZDocument2D = planeYOZDefinition.BeginEdit();
-
-            // Рассчитываем координаты центра окружности
-            double yCenter = distanceFromOrigin; // расстояние от центра координат по оси Y
-
-            planeYOZDocument2D.ksCircle(0, 12, radius, 1);
-
-            // Выходим из режима редактирования эскиза
-            planeYOZDefinition.EndEdit();
+            var offsetEntity = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_planeOffset);
+            var offsetDef = (ksPlaneOffsetDefinition)offsetEntity.GetDefinition();
+            offsetDef.SetPlane((ksEntity)_part.NewEntity((short)plane));
+            offsetDef.offset = offset;
+            offsetDef.direction = false;
+            offsetEntity.Create();
+            return offsetEntity;
         }
-
 
         private ksSketchDefinition CreateSketch(Obj3dType planeType, ksEntity offsetPlane)
         {
@@ -125,6 +123,17 @@ namespace ChandelierPlugin.Model
             var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
 
             extrusionDef.SetSideParam(side, (short)End_Type.etBlind, depth);
+            extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
+            extrusionDef.SetSketch(sketch);
+            extrusionEntity.Create();
+        }
+
+        private void СreateExtrusionToNearSurface(ksSketchDefinition sketch, bool side = true)
+        {
+            var extrusionEntity = (ksEntity)_part.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
+            var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
+
+            extrusionDef.SetSideParam(side, (short)End_Type.etUpToNearSurface);
             extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
             extrusionDef.SetSketch(sketch);
             extrusionEntity.Create();
