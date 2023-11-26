@@ -17,7 +17,7 @@ namespace ChandelierPlugin.Model
 
         public Builder()
         {
-            if (!_wrapper.ConnectToKompas())
+            if (!this._wrapper.ConnectToKompas())
             {
                 Console.WriteLine("Не удалось подключиться к KOMPAS-3D.");
                 return;
@@ -39,8 +39,8 @@ namespace ChandelierPlugin.Model
 
 
             BuilBase(radiusInnerCircle, radiusOuterCircle, radiusBaseCircle);
-            //BuildExtrusion(foundationThickness);
-            //BuildWiresTubes();
+            BuildExtrusion(foundationThickness);
+            BuildWiresTubes(radiusBaseCircle, 20, foundationThickness / 2);
             //BuildLamps(lampsAmount, lampRadius);
         }
 
@@ -105,46 +105,42 @@ namespace ChandelierPlugin.Model
             _doc3D.shadedWireframe = true;
         }
 
-        private void BuildWiresTubes()
-        {
-
-        }
-
         private void BuildLamps(int lampsAmount, double lampRadius)
         {
 
         }
 
-
-        private void BuildModel(double diameterIn, double diametrOut)
+        private void BuildWiresTubes(double distanceFromOrigin, double radius, double sketchHeight)
         {
             const int pTop_part = -1;
             const int o3d_sketch = 5;
-            const int o3d_planeXOY = 1;
+            const int o3d_planeYOZ = 4;
+            const int o3d_bossExtrusion = 40;
 
-            //Получаем интерфейс 3D-модели 
-            _part = _doc3D.GetPart(pTop_part);
-            //Получаем интерфейс объекта "Эскиз"
-            _entityDraw = _part.NewEntity(o3d_sketch);
-            //Получаем интерфейс параметров эскиза
-            ksSketchDefinition SketchDefinition = _entityDraw.GetDefinition();
-            //Получаем интерфейс объекта "плоскость XOY"
-            ksEntity EntityPlane = _part.GetDefaultEntity(o3d_planeXOY);
-            //Устанавливаем плоскость XOY базовой для эскиза
-            SketchDefinition.SetPlane(EntityPlane);
-            //Создаем эскиз
-            _entityDraw.Create();
-            //Входим в режим редактирования эскиза
-            ksDocument2D Document2D = SketchDefinition.BeginEdit();
-            //Строим окружность (Указывается радиус, поэтому диаметр делим попалам)
-            Document2D.ksCircle(0, 0, diameterIn / 2, 1);
-            Document2D.ksCircle(0, 0, diametrOut / 2, 1);
-            //Выходим из режима редактирования эскиза
-            SketchDefinition.EndEdit();
+            // Получаем интерфейс 3D-модели 
+            ksPart part = _doc3D.GetPart(pTop_part);
+
+            // Создаем плоскость YOZ
+            ksEntity planeYOZ = part.NewEntity(o3d_sketch);
+            ksSketchDefinition planeYOZDefinition = planeYOZ.GetDefinition();
+            ksEntity entityPlaneYOZ = part.GetDefaultEntity(o3d_planeYOZ);
+            planeYOZDefinition.SetPlane(entityPlaneYOZ);
+            planeYOZ.Create();
+
+            // Входим в режим редактирования эскиза
+            ksDocument2D planeYOZDocument2D = planeYOZDefinition.BeginEdit();
+
+            // Рассчитываем координаты центра окружности
+            double yCenter = distanceFromOrigin; // расстояние от центра координат по оси Y
+
+            planeYOZDocument2D.ksCircle(0, 12, radius, 1);
+
+            // Выходим из режима редактирования эскиза
+            planeYOZDefinition.EndEdit();
         }
 
-        
-        
+
+
 
         /// <summary>
         /// Операция "Фаска" для всех граней
