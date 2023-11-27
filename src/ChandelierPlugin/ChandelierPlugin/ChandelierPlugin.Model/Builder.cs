@@ -1,63 +1,107 @@
-﻿using Kompas6API5;
-using Kompas6Constants3D;
-using Kompas6Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KompasAPI7;
-using System.Diagnostics;
-using System.Security.Cryptography;
-
-namespace ChandelierPlugin.Model
+﻿namespace ChandelierPlugin.Model
 {
+    using System;
+    using Kompas6API5;
+    using Kompas6Constants3D;
+
+    /// <summary>
+    /// Класс для построения деталей в KOMPAS-3D.
+    /// </summary>
     public class Builder
     {
-        private Wrapper _wrapper = new Wrapper();
-        private KompasObject _kompas;
-        private ksPart _part;
-        private ksEntity _entityDraw;
-        private ksDocument3D _doc3D;
+        /// <summary>
+        /// Получает или устанавливает радиус внутреннего круга.
+        /// </summary>
+        public double RadiusInnerCircle;
 
-        private double radiusInnerCircle;
-        private double radiusOuterCircle;
-        private double radiusBaseCircle;
-        private double foundationThickness;
-        private int lampsAmount;
-        private double lampRadius;
+        /// <summary>
+        /// Получает или устанавливает радиус внешнего круга.
+        /// </summary>
+        public double RadiusOuterCircle;
 
+        /// <summary>
+        /// Получает или устанавливает радиус круга основания.
+        /// </summary>
+        public double RadiusBaseCircle;
+
+        /// <summary>
+        /// Получает или устанавливает толщину фундамента.
+        /// </summary>
+        public double FoundationThickness;
+
+        /// <summary>
+        /// Получает или устанавливает количество ламп.
+        /// </summary>
+        public int LampsAmount;
+
+        /// <summary>
+        /// Радиус лампы.
+        /// </summary>
+        public double LampRadius;
+
+        private readonly Wrapper _wrapper = new Wrapper();
+        private readonly KompasObject _kompas;
+        private readonly ksPart _part;
+        private readonly ksDocument3D _doc3D;
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса Builder.
+        /// </summary>
         public Builder()
         {
-            if (!this._wrapper.ConnectToKompas())
+            if (!_wrapper.ConnectToKompas())
             {
                 Console.WriteLine("Не удалось подключиться к KOMPAS-3D.");
                 return;
             }
 
-            this._kompas = this._wrapper.Kompas;
-            this._doc3D = this._wrapper.CreateDocument3D();
-            this._doc3D.Create();
-            this._part = this._wrapper.Part;
+            _kompas = _wrapper.Kompas;
+            _doc3D = _wrapper.CreateDocument3D();
+            _doc3D.Create();
+            _part = _wrapper.Part;
         }
 
+        /// <summary>
+        /// Строит деталь на основе заданных параметров.
+        /// </summary>
+        /// <param name="parameters">Параметры для построения детали.</param>
         public void BuildDetail(Parameters parameters)
         {
-            this.radiusInnerCircle = parameters.ParametersDict[ParameterType.RadiusInnerCircle].CurrentValue;
-            this.radiusOuterCircle = parameters.ParametersDict[ParameterType.RadiusOuterCircle].CurrentValue;
-            this.radiusBaseCircle = parameters.ParametersDict[ParameterType.RadiusBaseCircle].CurrentValue;
-            this.foundationThickness = parameters.ParametersDict[ParameterType.FoundationThickness].CurrentValue;
-            this.lampsAmount = (int)parameters.ParametersDict[ParameterType.LampsAmount].CurrentValue;
-            this.lampRadius = parameters.ParametersDict[ParameterType.LampRadius].CurrentValue;
+            RadiusInnerCircle = parameters.
+                ParametersDict[ParameterType.RadiusInnerCircle].CurrentValue;
+            RadiusOuterCircle = parameters.
+                ParametersDict[ParameterType.RadiusOuterCircle].CurrentValue;
+            RadiusBaseCircle = parameters.
+                ParametersDict[ParameterType.RadiusBaseCircle].CurrentValue;
+            FoundationThickness = parameters.
+                ParametersDict[ParameterType.FoundationThickness].
+                CurrentValue;
+            LampsAmount = (int)parameters.
+                ParametersDict[ParameterType.LampsAmount].CurrentValue;
+            LampRadius = parameters.
+                ParametersDict[ParameterType.LampRadius].CurrentValue;
 
-            this.BuildBase(this.radiusInnerCircle, this.radiusOuterCircle, this.radiusBaseCircle);
-            this.BuildWiresTubes(15);
-            this.BuildLamps(this.lampsAmount, this.lampRadius);
+            BuildBase(
+                RadiusInnerCircle,
+                RadiusOuterCircle,
+                RadiusBaseCircle);
+            BuildWiresTubes(15);
+            BuildLamps(LampsAmount, LampRadius);
         }
 
-        private void BuildBase(double radiusInnerCircle, double radiusOuterCircle, double radiusBaseCircle)
+        /// <summary>
+        /// Строит основание детали.
+        /// </summary>
+        /// <param name="radiusInnerCircle">Радиус внутреннего круга.</param>
+        /// <param name="radiusOuterCircle">Радиус внешнего круга.</param>
+        /// <param name="radiusBaseCircle">Радиус базового круга.</param>
+        private void BuildBase(
+            double radiusInnerCircle,
+            double radiusOuterCircle,
+            double radiusBaseCircle)
         {
-            var sketch = _wrapper.CreateSketch(Obj3dType.o3d_planeXOY, null);
+            var sketch = _wrapper.
+                CreateSketch(Obj3dType.o3d_planeXOY, null);
             var document2d = (ksDocument2D)sketch.BeginEdit();
 
             document2d.ksCircle(0, 0, radiusBaseCircle, 1);
@@ -65,35 +109,54 @@ namespace ChandelierPlugin.Model
             document2d.ksCircle(0, 0, radiusOuterCircle, 1);
             sketch.EndEdit();
 
-            _wrapper.СreateExtrusion(sketch, this.foundationThickness, true);
+            _wrapper.CreateExtrusion(sketch, FoundationThickness, true);
         }
 
+        /// <summary>
+        /// Строит трубы под провода.
+        /// </summary>
+        /// <param name="radius">Радиус труб и проводов.</param>
         private void BuildWiresTubes(double radius)
         {
-            var offsetWidthEntity = _wrapper.CreateOffsetPlane(Obj3dType.o3d_planeXOZ, this.radiusBaseCircle);
-            var sketch = _wrapper.CreateSketch(Obj3dType.o3d_planeXOZ, offsetWidthEntity);
+            var offsetWidthEntity = _wrapper.
+                CreateOffsetPlane(Obj3dType.o3d_planeXOZ, RadiusBaseCircle);
+            var sketch = _wrapper.
+                CreateSketch(Obj3dType.o3d_planeXOZ, offsetWidthEntity);
             var document2d = (ksDocument2D)sketch.BeginEdit();
 
-            document2d.ksCircle(0, -this.foundationThickness / 2, radius, 1);
+            document2d.ksCircle(
+                0,
+                -FoundationThickness / 2,
+                radius,
+                1);
             sketch.EndEdit();
 
-            var extrusionDef = _wrapper.СreateExtrusionToNearSurface(sketch, false);
+            var extrusionDef = _wrapper.
+                CreateExtrusionToNearSurface(sketch, false);
             _wrapper.CreateCircularCopy(3, extrusionDef);
 
-            extrusionDef = _wrapper.СreateExtrusionToNearSurface(sketch, true);
+            extrusionDef = _wrapper.
+                CreateExtrusionToNearSurface(sketch, true);
             _wrapper.CreateCircularCopy(3, extrusionDef);
         }
 
+        /// <summary>
+        /// Строит лампы детали.
+        /// </summary>
+        /// <param name="lampsAmount">Количество ламп.</param>
+        /// <param name="lampRadius">Радиус лампы.</param>
         private void BuildLamps(int lampsAmount, double lampRadius)
         {
-            var sketch = _wrapper.CreateSketch(Obj3dType.o3d_planeXOY, null);
+            var sketch = _wrapper.
+                CreateSketch(Obj3dType.o3d_planeXOY, null);
             var document2d = (ksDocument2D)sketch.BeginEdit();
 
-            var offset = (this.radiusOuterCircle + this.radiusInnerCircle) / 2;
+            var offset = (RadiusOuterCircle + RadiusInnerCircle) / 2;
             document2d.ksCircle(offset, 0, lampRadius, 1);
             sketch.EndEdit();
 
-            var extrusionDef = _wrapper.СreateExtrusion(sketch, 20, false);
+            var extrusionDef = _wrapper.
+                CreateExtrusion(sketch, 20, false);
             _wrapper.CreateCircularCopy(lampsAmount, extrusionDef);
         }
     }

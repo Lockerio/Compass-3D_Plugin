@@ -1,60 +1,107 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ChandelierPlugin.Model;
-
-namespace ChandelierPlugin.View
+﻿namespace ChandelierPlugin.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using ChandelierPlugin.Model;
+
+    /// <summary>
+    /// Главная форма приложения.
+    /// </summary>
     public partial class FormMain : Form
     {
+        /// <summary>
+        /// Экземпляр класса параметров.
+        /// </summary>
+        private readonly Parameters _parameters = new Parameters();
+
+        /// <summary>
+        /// Экземпляр класса строителя.
+        /// </summary>
+        private readonly Builder _builder = new Builder();
+
+        /// <summary>
+        /// Словарь, содержащий элементы управления формы для каждого типа
+        /// параметра.
+        /// </summary>
+        private readonly Dictionary<
+            ParameterType,
+            Dictionary<string, Control>> _parameterFormElements =
+            new Dictionary<ParameterType, Dictionary<string, Control>>();
+
+        /// <summary>
+        /// Цвет по умолчанию для элементов формы.
+        /// </summary>
+        private readonly Color _defaultColor = Color.White;
+
+        /// <summary>
+        /// Цвет для обозначения ошибок ввода.
+        /// </summary>
+        private readonly Color _errorColor =
+            Color.FromArgb(255, 192, 192);
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса FormMain.
+        /// </summary>
         public FormMain()
         {
             InitializeComponent();
         }
 
-        private Parameters parameters = new Parameters();
-        private Builder builder = new Builder();
-
-        private Dictionary<ParameterType, Dictionary<string, Control>> parameterFormElements = 
-            new Dictionary<ParameterType, Dictionary<string, Control>>();
-
-        private Color defaultColor = Color.White;
-        private Color errorColor = Color.FromArgb(255, 192, 192);
-
+        /// <summary>
+        /// Обработчик события загрузки формы.
+        /// </summary>
         private void FormMain_Load(object sender, EventArgs e)
         {
-            parameterFormElements.Add(ParameterType.RadiusOuterCircle, new Dictionary<string, Control>
+            InitializeParameterFormElements();
+            SetTextFormElements();
+        }
+
+        /// <summary>
+        /// Инициализирует элементы управления формы для каждого типа
+        /// параметра.
+        /// </summary>
+        private void InitializeParameterFormElements()
+        {
+            _parameterFormElements.Add(
+                ParameterType.RadiusOuterCircle,
+                new Dictionary<string, Control>
             {
                 { "textBox", textBox_RadiusOuterCircle },
                 { "label", label_RadiusOuterCircle },
             });
-            parameterFormElements.Add(ParameterType.RadiusInnerCircle, new Dictionary<string, Control>
+            _parameterFormElements.Add(
+                ParameterType.RadiusInnerCircle,
+                new Dictionary<string, Control>
             {
                 { "textBox", textBox_RadiusInnerCircle },
                 { "label", label_RadiusInnerCircle },
             });
-            parameterFormElements.Add(ParameterType.RadiusBaseCircle, new Dictionary<string, Control>
+            _parameterFormElements.Add(
+                ParameterType.RadiusBaseCircle,
+                new Dictionary<string, Control>
             {
                 { "textBox", textBox_RadiusBaseCircle },
                 { "label", label_RadiusBaseCircle },
             });
-            parameterFormElements.Add(ParameterType.FoundationThickness, new Dictionary<string, Control>
+            _parameterFormElements.Add(
+                ParameterType.FoundationThickness,
+                new Dictionary<string, Control>
             {
                 { "textBox", textBox_FoundationThickness },
                 { "label", label_FoundationThickness },
             });
-            parameterFormElements.Add(ParameterType.LampsAmount, new Dictionary<string, Control>
+            _parameterFormElements.Add(
+                ParameterType.LampsAmount,
+                new Dictionary<string, Control>
             {
                 { "textBox", textBox_LampsAmount },
                 { "label", label_LampsAmount },
             });
-            parameterFormElements.Add(ParameterType.LampRadius, new Dictionary<string, Control>
+            _parameterFormElements.Add(
+                ParameterType.LampRadius,
+                new Dictionary<string, Control>
             {
                 { "textBox", textBox_LampRadius },
                 { "label", label_LampRadius },
@@ -63,6 +110,9 @@ namespace ChandelierPlugin.View
             SetTextFormElements();
         }
 
+        /// <summary>
+        /// Обработчик события изменения текста в текстовом поле.
+        /// </summary>
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
             if (sender is TextBox textBox)
@@ -70,50 +120,70 @@ namespace ChandelierPlugin.View
                 string textBoxName = textBox.Name;
                 ParameterType parameterType = ParameterType.Unknown;
 
-                string parameterTypeStr = textBoxName.Split('_')[1];
+                string parameterTypeStr =
+                    textBoxName.Split('_')[1];
 
-                foreach (var item in parameterFormElements.Keys)
+                foreach (var item in _parameterFormElements.Keys)
                 {
                     if (item.ToString() == parameterTypeStr)
                     {
-                        parameterType = item; 
+                        parameterType = item;
                         break;
                     }
                 }
 
                 try
                 {
-                    parameters.AssertParameter(parameterType, parameters.ParametersDict[parameterType], Convert.ToDouble(textBox.Text));
+                    _parameters.AssertParameter(
+                        parameterType,
+                        _parameters.ParametersDict[parameterType],
+                        Convert.ToDouble(textBox.Text));
                     SetTextFormElements();
-                    parameterFormElements[parameterType]["textBox"].BackColor = defaultColor;
+                    _parameterFormElements[parameterType]["textBox"].
+                        BackColor = _defaultColor;
                 }
                 catch (Exception ex)
                 {
-                    Parameter _parameter = parameters.ParametersDict[parameterType];
+                    Parameter _parameter =
+                        _parameters.ParametersDict[parameterType];
                     var _minValue = _parameter.MinValue;
                     var _maxValue = _parameter.MaxValue;
-                    var message = ex.Message + $"\nВведите число от {_minValue} до {_maxValue}";
-                    parameterFormElements[parameterType]["label"].Text = message;
-                    parameterFormElements[parameterType]["textBox"].BackColor = errorColor;
+                    var message =
+                        ex.Message + "\nВведите число от "
+                                   + $"{_minValue} до {_maxValue}";
+                    _parameterFormElements[parameterType]["label"].
+                        Text = message;
+                    _parameterFormElements[parameterType]["textBox"].
+                        BackColor = _errorColor;
                 }
             }
         }
 
+        /// <summary>
+        /// Устанавливает текст и значения элементов управления формы на
+        /// основе текущих параметров.
+        /// </summary>
         private void SetTextFormElements()
         {
-            foreach (var item in parameters.ParametersDict)
+            foreach (var item
+                in _parameters.ParametersDict)
             {
                 var _key = item.Key;
                 var _value = item.Value;
 
-                parameterFormElements[_key]["textBox"].Text = _value.CurrentValue.ToString();
-                parameterFormElements[_key]["label"].Text = $"от {_value.MinValue} до {_value.MaxValue}";
+                _parameterFormElements[_key]["textBox"].Text =
+                    _value.CurrentValue.ToString();
+                _parameterFormElements[_key]["label"].Text =
+                    $"от {_value.MinValue} до {_value.MaxValue}";
             }
         }
 
+        /// <summary>
+        /// Обработчик события нажатия кнопки "Построить".
+        /// </summary>
         private void buttonBuild_Click(object sender, EventArgs e)
         {
-            builder.BuildDetail(parameters);
+            _builder.BuildDetail(_parameters);
         }
     }
 }

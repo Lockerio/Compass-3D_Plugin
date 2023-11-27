@@ -1,63 +1,117 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChandelierPlugin.Model
+﻿namespace ChandelierPlugin.Model
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Представляет набор параметров с соответствующими типами.
+    /// </summary>
     public class Parameters
     {
-        private Dictionary<ParameterType, Parameter> _parametersDict;
+        /// <summary>
+        /// Словарь, содержащий параметры с их типами.
+        /// </summary>
+        public Dictionary<ParameterType, Parameter> ParametersDict =
+            new Dictionary<ParameterType, Parameter>();
 
-        public Dictionary<ParameterType, Parameter> ParametersDict = new Dictionary<ParameterType, Parameter>();
-
-        public Parameters(Dictionary<ParameterType, Parameter> parametersDict)
+        /// <summary>
+        /// Инициализирует новый экземпляр класса Parameters с
+        /// предоставленным словарем параметров.
+        /// </summary>
+        /// <param name="parametersDict">Словарь параметров с их
+        /// типами.</param>
+        public Parameters(
+            Dictionary<ParameterType, Parameter> parametersDict)
         {
-            this.ParametersDict = parametersDict;
+            ParametersDict = parametersDict;
         }
 
-        public Parameters() 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса Parameters со значениями
+        /// параметров по умолчанию.
+        /// </summary>
+        public Parameters()
         {
-            ParametersDict.Add(ParameterType.RadiusOuterCircle, new Parameter(800, 1000, 400));
-            ParametersDict.Add(ParameterType.RadiusInnerCircle, new Parameter(700, 750, 150));
-            ParametersDict.Add(ParameterType.RadiusBaseCircle, new Parameter(100, 100, 100));
-            ParametersDict.Add(ParameterType.FoundationThickness, new Parameter(60, 80, 40));
-            ParametersDict.Add(ParameterType.LampsAmount, new Parameter(12, 109, 0));
-            ParametersDict.Add(ParameterType.LampRadius, new Parameter(20, 25, 15));
+            ParametersDict.Add(
+                ParameterType.RadiusOuterCircle,
+                new Parameter(800, 1000, 400));
+            ParametersDict.Add(
+                ParameterType.RadiusInnerCircle,
+                new Parameter(700, 750, 150));
+            ParametersDict.Add(
+                ParameterType.RadiusBaseCircle,
+                new Parameter(100, 100, 100));
+            ParametersDict.Add(
+                ParameterType.FoundationThickness,
+                new Parameter(60, 80, 40));
+            ParametersDict.Add(
+                ParameterType.LampsAmount,
+                new Parameter(12, 109, 0));
+            ParametersDict.Add(
+                ParameterType.LampRadius,
+                new Parameter(20, 25, 15));
         }
 
-        public void AssertParameter(ParameterType parameterType, Parameter parameter, double value)
+        /// <summary>
+        /// Проверяет и задает значение для указанного параметра, а затем
+        /// обновляет диапазоны других параметров.
+        /// </summary>
+        /// <param name="parameterType">Тип параметра.</param>
+        /// <param name="parameter">Экземпляр параметра.</param>
+        /// <param name="value">Значение параметра для установки.</param>
+        public void AssertParameter(
+            ParameterType parameterType,
+            Parameter parameter,
+            double value)
         {
-            Validator.AssertNumberIsInRange(value, parameter.MinValue, parameter.MaxValue);
-            this.ParametersDict[parameterType].CurrentValue = value;
-            this.ChangeParametersRangeValues(parameterType, parameter);
+            Validator.AssertNumberIsInRange(
+                value,
+                parameter.MinValue,
+                parameter.MaxValue);
+            ParametersDict[parameterType].CurrentValue = value;
+            ChangeParametersRangeValues(parameterType, parameter);
         }
 
-        private void ChangeParametersRangeValues(ParameterType parameterType, Parameter parameter)
+        /// <summary>
+        /// Изменяет значения диапазона других параметров в зависимости от
+        /// изменения указанного параметра.
+        /// </summary>
+        /// <param name="parameterType">Тип параметра, который был
+        /// изменен.</param>
+        /// <param name="parameter">Измененный параметр.</param>
+        private void ChangeParametersRangeValues(
+            ParameterType parameterType,
+            Parameter parameter)
         {
-            switch (parameterType) 
+            switch (parameterType)
             {
                 case ParameterType.RadiusOuterCircle:
-                    this.ParametersDict[ParameterType.RadiusInnerCircle].MaxValue = parameter.CurrentValue - 49; 
+                    ParametersDict[ParameterType.RadiusInnerCircle].
+                        MaxValue = parameter.CurrentValue - 49;
                     break;
 
                 case ParameterType.RadiusInnerCircle:
-                    this.ParametersDict[ParameterType.RadiusOuterCircle].MinValue = parameter.CurrentValue + 49;
-                    this.ParametersDict[ParameterType.RadiusBaseCircle].MaxValue = parameter.CurrentValue - 49;
+                    ParametersDict[ParameterType.RadiusOuterCircle].
+                        MinValue = parameter.CurrentValue + 49;
+                    ParametersDict[ParameterType.RadiusBaseCircle].
+                        MaxValue = parameter.CurrentValue - 49;
                     break;
 
                 case ParameterType.RadiusBaseCircle:
-                    this.ParametersDict[ParameterType.RadiusInnerCircle].MinValue= parameter.CurrentValue + 49;
+                    ParametersDict[ParameterType.RadiusInnerCircle].
+                        MinValue = parameter.CurrentValue + 49;
                     break;
 
                 case ParameterType.LampRadius:
-                    double _innerRadius = this.ParametersDict[ParameterType.RadiusInnerCircle].CurrentValue;
-                    double _lampRadius = this.ParametersDict[ParameterType.LampRadius].CurrentValue;
-                    int _maxValue = (int)(_innerRadius * Math.PI / _lampRadius);
+                    double _innerRadius = ParametersDict[ParameterType.
+                        RadiusInnerCircle].CurrentValue;
+                    double _lampRadius = ParametersDict[ParameterType.
+                        LampRadius].CurrentValue;
+                    int _maxValue = (int)(_innerRadius * Math.PI /
+                                          _lampRadius);
 
-                    this.ParametersDict[ParameterType.LampsAmount].MaxValue = _maxValue;
+                    ParametersDict[ParameterType.LampsAmount].MaxValue =
+                        _maxValue;
                     break;
             }
         }

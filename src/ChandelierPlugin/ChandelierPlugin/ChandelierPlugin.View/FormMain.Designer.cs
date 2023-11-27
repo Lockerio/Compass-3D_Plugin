@@ -28,221 +28,221 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox_RadiusOuterCircle = new System.Windows.Forms.TextBox();
-            this.textBox_RadiusInnerCircle = new System.Windows.Forms.TextBox();
-            this.textBox_FoundationThickness = new System.Windows.Forms.TextBox();
-            this.textBox_RadiusBaseCircle = new System.Windows.Forms.TextBox();
-            this.textBox_LampRadius = new System.Windows.Forms.TextBox();
-            this.textBox_LampsAmount = new System.Windows.Forms.TextBox();
-            this.label_LampRadius = new System.Windows.Forms.Label();
-            this.label_LampsAmount = new System.Windows.Forms.Label();
-            this.label_FoundationThickness = new System.Windows.Forms.Label();
-            this.label_RadiusBaseCircle = new System.Windows.Forms.Label();
-            this.label_RadiusInnerCircle = new System.Windows.Forms.Label();
-            this.label_RadiusOuterCircle = new System.Windows.Forms.Label();
-            this.buttonBuild = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            textBox_RadiusOuterCircle = new System.Windows.Forms.TextBox();
+            textBox_RadiusInnerCircle = new System.Windows.Forms.TextBox();
+            textBox_FoundationThickness = new System.Windows.Forms.TextBox();
+            textBox_RadiusBaseCircle = new System.Windows.Forms.TextBox();
+            textBox_LampRadius = new System.Windows.Forms.TextBox();
+            textBox_LampsAmount = new System.Windows.Forms.TextBox();
+            label_LampRadius = new System.Windows.Forms.Label();
+            label_LampsAmount = new System.Windows.Forms.Label();
+            label_FoundationThickness = new System.Windows.Forms.Label();
+            label_RadiusBaseCircle = new System.Windows.Forms.Label();
+            label_RadiusInnerCircle = new System.Windows.Forms.Label();
+            label_RadiusOuterCircle = new System.Windows.Forms.Label();
+            buttonBuild = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Внешний радиус основания:";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(45, 41);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(191, 16);
+            label1.TabIndex = 0;
+            label1.Text = "Внешний радиус основания:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 85);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(213, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Внутренний радиус основания:";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(45, 85);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(213, 16);
+            label2.TabIndex = 1;
+            label2.Text = "Внутренний радиус основания:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 129);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(212, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Радиус крепежного основания:";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(45, 129);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(212, 16);
+            label3.TabIndex = 2;
+            label3.Text = "Радиус крепежного основания:";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(45, 173);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Толщина основания:";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(45, 173);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(141, 16);
+            label4.TabIndex = 3;
+            label4.Text = "Толщина основания:";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(45, 217);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(155, 16);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Количество лампочек:";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(45, 217);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(155, 16);
+            label5.TabIndex = 4;
+            label5.Text = "Количество лампочек:";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(45, 261);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(125, 16);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Радиус лампочки:";
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(45, 261);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(125, 16);
+            label6.TabIndex = 5;
+            label6.Text = "Радиус лампочки:";
             // 
             // textBox_RadiusOuterCircle
             // 
-            this.textBox_RadiusOuterCircle.BackColor = System.Drawing.Color.White;
-            this.textBox_RadiusOuterCircle.Location = new System.Drawing.Point(274, 38);
-            this.textBox_RadiusOuterCircle.Name = "textBox_RadiusOuterCircle";
-            this.textBox_RadiusOuterCircle.Size = new System.Drawing.Size(144, 22);
-            this.textBox_RadiusOuterCircle.TabIndex = 6;
-            this.textBox_RadiusOuterCircle.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            textBox_RadiusOuterCircle.BackColor = System.Drawing.Color.White;
+            textBox_RadiusOuterCircle.Location = new System.Drawing.Point(274, 38);
+            textBox_RadiusOuterCircle.Name = "textBox_RadiusOuterCircle";
+            textBox_RadiusOuterCircle.Size = new System.Drawing.Size(144, 22);
+            textBox_RadiusOuterCircle.TabIndex = 6;
+            textBox_RadiusOuterCircle.TextChanged += new System.EventHandler(TextBox_TextChanged);
             // 
             // textBox_RadiusInnerCircle
             // 
-            this.textBox_RadiusInnerCircle.Location = new System.Drawing.Point(274, 82);
-            this.textBox_RadiusInnerCircle.Name = "textBox_RadiusInnerCircle";
-            this.textBox_RadiusInnerCircle.Size = new System.Drawing.Size(144, 22);
-            this.textBox_RadiusInnerCircle.TabIndex = 7;
-            this.textBox_RadiusInnerCircle.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            textBox_RadiusInnerCircle.Location = new System.Drawing.Point(274, 82);
+            textBox_RadiusInnerCircle.Name = "textBox_RadiusInnerCircle";
+            textBox_RadiusInnerCircle.Size = new System.Drawing.Size(144, 22);
+            textBox_RadiusInnerCircle.TabIndex = 7;
+            textBox_RadiusInnerCircle.TextChanged += new System.EventHandler(TextBox_TextChanged);
             // 
             // textBox_FoundationThickness
             // 
-            this.textBox_FoundationThickness.Location = new System.Drawing.Point(274, 170);
-            this.textBox_FoundationThickness.Name = "textBox_FoundationThickness";
-            this.textBox_FoundationThickness.Size = new System.Drawing.Size(144, 22);
-            this.textBox_FoundationThickness.TabIndex = 9;
-            this.textBox_FoundationThickness.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            textBox_FoundationThickness.Location = new System.Drawing.Point(274, 170);
+            textBox_FoundationThickness.Name = "textBox_FoundationThickness";
+            textBox_FoundationThickness.Size = new System.Drawing.Size(144, 22);
+            textBox_FoundationThickness.TabIndex = 9;
+            textBox_FoundationThickness.TextChanged += new System.EventHandler(TextBox_TextChanged);
             // 
             // textBox_RadiusBaseCircle
             // 
-            this.textBox_RadiusBaseCircle.Location = new System.Drawing.Point(274, 126);
-            this.textBox_RadiusBaseCircle.Name = "textBox_RadiusBaseCircle";
-            this.textBox_RadiusBaseCircle.Size = new System.Drawing.Size(144, 22);
-            this.textBox_RadiusBaseCircle.TabIndex = 8;
-            this.textBox_RadiusBaseCircle.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            textBox_RadiusBaseCircle.Location = new System.Drawing.Point(274, 126);
+            textBox_RadiusBaseCircle.Name = "textBox_RadiusBaseCircle";
+            textBox_RadiusBaseCircle.Size = new System.Drawing.Size(144, 22);
+            textBox_RadiusBaseCircle.TabIndex = 8;
+            textBox_RadiusBaseCircle.TextChanged += new System.EventHandler(TextBox_TextChanged);
             // 
             // textBox_LampRadius
             // 
-            this.textBox_LampRadius.Location = new System.Drawing.Point(274, 258);
-            this.textBox_LampRadius.Name = "textBox_LampRadius";
-            this.textBox_LampRadius.Size = new System.Drawing.Size(144, 22);
-            this.textBox_LampRadius.TabIndex = 11;
-            this.textBox_LampRadius.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            textBox_LampRadius.Location = new System.Drawing.Point(274, 258);
+            textBox_LampRadius.Name = "textBox_LampRadius";
+            textBox_LampRadius.Size = new System.Drawing.Size(144, 22);
+            textBox_LampRadius.TabIndex = 11;
+            textBox_LampRadius.TextChanged += new System.EventHandler(TextBox_TextChanged);
             // 
             // textBox_LampsAmount
             // 
-            this.textBox_LampsAmount.Location = new System.Drawing.Point(274, 214);
-            this.textBox_LampsAmount.Name = "textBox_LampsAmount";
-            this.textBox_LampsAmount.Size = new System.Drawing.Size(144, 22);
-            this.textBox_LampsAmount.TabIndex = 10;
-            this.textBox_LampsAmount.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            textBox_LampsAmount.Location = new System.Drawing.Point(274, 214);
+            textBox_LampsAmount.Name = "textBox_LampsAmount";
+            textBox_LampsAmount.Size = new System.Drawing.Size(144, 22);
+            textBox_LampsAmount.TabIndex = 10;
+            textBox_LampsAmount.TextChanged += new System.EventHandler(TextBox_TextChanged);
             // 
             // label_LampRadius
             // 
-            this.label_LampRadius.AutoSize = true;
-            this.label_LampRadius.Location = new System.Drawing.Point(429, 261);
-            this.label_LampRadius.Name = "label_LampRadius";
-            this.label_LampRadius.Size = new System.Drawing.Size(0, 16);
-            this.label_LampRadius.TabIndex = 17;
+            label_LampRadius.AutoSize = true;
+            label_LampRadius.Location = new System.Drawing.Point(429, 261);
+            label_LampRadius.Name = "label_LampRadius";
+            label_LampRadius.Size = new System.Drawing.Size(0, 16);
+            label_LampRadius.TabIndex = 17;
             // 
             // label_LampsAmount
             // 
-            this.label_LampsAmount.AutoSize = true;
-            this.label_LampsAmount.Location = new System.Drawing.Point(428, 217);
-            this.label_LampsAmount.Name = "label_LampsAmount";
-            this.label_LampsAmount.Size = new System.Drawing.Size(0, 16);
-            this.label_LampsAmount.TabIndex = 16;
+            label_LampsAmount.AutoSize = true;
+            label_LampsAmount.Location = new System.Drawing.Point(428, 217);
+            label_LampsAmount.Name = "label_LampsAmount";
+            label_LampsAmount.Size = new System.Drawing.Size(0, 16);
+            label_LampsAmount.TabIndex = 16;
             // 
             // label_FoundationThickness
             // 
-            this.label_FoundationThickness.AutoSize = true;
-            this.label_FoundationThickness.Location = new System.Drawing.Point(428, 173);
-            this.label_FoundationThickness.Name = "label_FoundationThickness";
-            this.label_FoundationThickness.Size = new System.Drawing.Size(0, 16);
-            this.label_FoundationThickness.TabIndex = 15;
+            label_FoundationThickness.AutoSize = true;
+            label_FoundationThickness.Location = new System.Drawing.Point(428, 173);
+            label_FoundationThickness.Name = "label_FoundationThickness";
+            label_FoundationThickness.Size = new System.Drawing.Size(0, 16);
+            label_FoundationThickness.TabIndex = 15;
             // 
             // label_RadiusBaseCircle
             // 
-            this.label_RadiusBaseCircle.AutoSize = true;
-            this.label_RadiusBaseCircle.Location = new System.Drawing.Point(428, 129);
-            this.label_RadiusBaseCircle.Name = "label_RadiusBaseCircle";
-            this.label_RadiusBaseCircle.Size = new System.Drawing.Size(0, 16);
-            this.label_RadiusBaseCircle.TabIndex = 14;
+            label_RadiusBaseCircle.AutoSize = true;
+            label_RadiusBaseCircle.Location = new System.Drawing.Point(428, 129);
+            label_RadiusBaseCircle.Name = "label_RadiusBaseCircle";
+            label_RadiusBaseCircle.Size = new System.Drawing.Size(0, 16);
+            label_RadiusBaseCircle.TabIndex = 14;
             // 
             // label_RadiusInnerCircle
             // 
-            this.label_RadiusInnerCircle.AutoSize = true;
-            this.label_RadiusInnerCircle.Location = new System.Drawing.Point(428, 85);
-            this.label_RadiusInnerCircle.Name = "label_RadiusInnerCircle";
-            this.label_RadiusInnerCircle.Size = new System.Drawing.Size(0, 16);
-            this.label_RadiusInnerCircle.TabIndex = 13;
+            label_RadiusInnerCircle.AutoSize = true;
+            label_RadiusInnerCircle.Location = new System.Drawing.Point(428, 85);
+            label_RadiusInnerCircle.Name = "label_RadiusInnerCircle";
+            label_RadiusInnerCircle.Size = new System.Drawing.Size(0, 16);
+            label_RadiusInnerCircle.TabIndex = 13;
             // 
             // label_RadiusOuterCircle
             // 
-            this.label_RadiusOuterCircle.AutoSize = true;
-            this.label_RadiusOuterCircle.Location = new System.Drawing.Point(428, 41);
-            this.label_RadiusOuterCircle.Name = "label_RadiusOuterCircle";
-            this.label_RadiusOuterCircle.Size = new System.Drawing.Size(0, 16);
-            this.label_RadiusOuterCircle.TabIndex = 12;
+            label_RadiusOuterCircle.AutoSize = true;
+            label_RadiusOuterCircle.Location = new System.Drawing.Point(428, 41);
+            label_RadiusOuterCircle.Name = "label_RadiusOuterCircle";
+            label_RadiusOuterCircle.Size = new System.Drawing.Size(0, 16);
+            label_RadiusOuterCircle.TabIndex = 12;
             // 
             // buttonBuild
             // 
-            this.buttonBuild.Location = new System.Drawing.Point(726, 289);
-            this.buttonBuild.Name = "buttonBuild";
-            this.buttonBuild.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.buttonBuild.Size = new System.Drawing.Size(100, 32);
-            this.buttonBuild.TabIndex = 18;
-            this.buttonBuild.Text = "Построить";
-            this.buttonBuild.UseVisualStyleBackColor = true;
-            this.buttonBuild.Click += new System.EventHandler(this.buttonBuild_Click);
+            buttonBuild.Location = new System.Drawing.Point(726, 289);
+            buttonBuild.Name = "buttonBuild";
+            buttonBuild.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            buttonBuild.Size = new System.Drawing.Size(100, 32);
+            buttonBuild.TabIndex = 18;
+            buttonBuild.Text = "Построить";
+            buttonBuild.UseVisualStyleBackColor = true;
+            buttonBuild.Click += new System.EventHandler(buttonBuild_Click);
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 333);
-            this.Controls.Add(this.buttonBuild);
-            this.Controls.Add(this.label_LampRadius);
-            this.Controls.Add(this.label_LampsAmount);
-            this.Controls.Add(this.label_FoundationThickness);
-            this.Controls.Add(this.label_RadiusBaseCircle);
-            this.Controls.Add(this.label_RadiusInnerCircle);
-            this.Controls.Add(this.label_RadiusOuterCircle);
-            this.Controls.Add(this.textBox_LampRadius);
-            this.Controls.Add(this.textBox_LampsAmount);
-            this.Controls.Add(this.textBox_FoundationThickness);
-            this.Controls.Add(this.textBox_RadiusBaseCircle);
-            this.Controls.Add(this.textBox_RadiusInnerCircle);
-            this.Controls.Add(this.textBox_RadiusOuterCircle);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormMain";
-            this.Text = "ChandelierPlugin";
-            this.Load += new System.EventHandler(this.FormMain_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(838, 333);
+            Controls.Add(buttonBuild);
+            Controls.Add(label_LampRadius);
+            Controls.Add(label_LampsAmount);
+            Controls.Add(label_FoundationThickness);
+            Controls.Add(label_RadiusBaseCircle);
+            Controls.Add(label_RadiusInnerCircle);
+            Controls.Add(label_RadiusOuterCircle);
+            Controls.Add(textBox_LampRadius);
+            Controls.Add(textBox_LampsAmount);
+            Controls.Add(textBox_FoundationThickness);
+            Controls.Add(textBox_RadiusBaseCircle);
+            Controls.Add(textBox_RadiusInnerCircle);
+            Controls.Add(textBox_RadiusOuterCircle);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FormMain";
+            Text = "ChandelierPlugin";
+            Load += new System.EventHandler(FormMain_Load);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
