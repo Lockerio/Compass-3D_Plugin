@@ -51,10 +51,8 @@ namespace ChandelierPlugin.Model
             lampRadius = parameters.ParametersDict[ParameterType.LampRadius].CurrentValue;
 
             BuildBase(radiusInnerCircle, radiusOuterCircle, radiusBaseCircle);
-
             BuildWiresTubes(15);
-            //BuildWiresTubes(radiusBaseCircle, 20, foundationThickness / 2);
-            //BuildLamps(lampsAmount, lampRadius);
+            BuildLamps(lampsAmount, lampRadius);
         }
 
         private void BuildBase(double radiusInnerCircle, double radiusOuterCircle, double radiusBaseCircle)
@@ -88,7 +86,15 @@ namespace ChandelierPlugin.Model
 
         private void BuildLamps(int lampsAmount, double lampRadius)
         {
+            var sketch = this.CreateSketch(Obj3dType.o3d_planeXOY, null);
+            var document2d = (ksDocument2D)sketch.BeginEdit();
 
+            var offset = (this.radiusOuterCircle + this.radiusInnerCircle) / 2;
+            document2d.ksCircle(offset, 0, lampRadius, 1);
+            sketch.EndEdit();
+
+            var extrusionDef = this.СreateExtrusion(sketch, 20, false);
+            CreateCircularCopy(lampsAmount, extrusionDef);
         }
 
         private ksEntity CreateOffsetPlane(Obj3dType plane, double offset)
@@ -120,7 +126,7 @@ namespace ChandelierPlugin.Model
             return ksSketch;
         }
 
-        private void СreateExtrusion(ksSketchDefinition sketch, double depth, bool side = true)
+        private ksBossExtrusionDefinition СreateExtrusion(ksSketchDefinition sketch, double depth, bool side = true)
         {
             var extrusionEntity = (ksEntity)_part.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
             var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
@@ -129,6 +135,8 @@ namespace ChandelierPlugin.Model
             extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
             extrusionDef.SetSketch(sketch);
             extrusionEntity.Create();
+
+            return extrusionDef;
         }
 
         private ksBossExtrusionDefinition СreateExtrusionToNearSurface(ksSketchDefinition sketch, bool side = true)
