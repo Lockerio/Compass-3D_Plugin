@@ -17,7 +17,7 @@ namespace ChandelierPlugin.View
         {
             InitializeComponent();
         }
-        
+
         private Parameters parameters = new Parameters();
         private Builder builder = new Builder();
 

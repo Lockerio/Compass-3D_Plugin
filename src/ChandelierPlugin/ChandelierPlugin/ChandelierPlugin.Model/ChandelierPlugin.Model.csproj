@@ -70,6 +70,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="VisualStudio.SpellChecker.Definitions, Version=2021.7.27.0, Culture=neutral, PublicKeyToken=c626d3cbee5c69d2, processorArchitecture=MSIL">
+      <HintPath>..\packages\EWSoftware.VSSpellChecker.2021.7.27\lib\net47\VisualStudio.SpellChecker.Definitions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder.cs" />
