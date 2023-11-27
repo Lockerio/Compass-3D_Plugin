@@ -79,8 +79,11 @@ namespace ChandelierPlugin.Model
             document2d.ksCircle(0, -this.foundationThickness / 2, radius, 1);
             sketch.EndEdit();
 
-            this.СreateExtrusionToNearSurface(sketch, false);
-            this.СreateExtrusionToNearSurface(sketch, true);
+            var extrusionDef = this.СreateExtrusionToNearSurface(sketch, false);
+            CreateCircularCopy(3, extrusionDef);
+
+            extrusionDef = this.СreateExtrusionToNearSurface(sketch, true);
+            CreateCircularCopy(3, extrusionDef);
         }
 
         private void BuildLamps(int lampsAmount, double lampRadius)
@@ -128,7 +131,7 @@ namespace ChandelierPlugin.Model
             extrusionEntity.Create();
         }
 
-        private void СreateExtrusionToNearSurface(ksSketchDefinition sketch, bool side = true)
+        private ksBossExtrusionDefinition СreateExtrusionToNearSurface(ksSketchDefinition sketch, bool side = true)
         {
             var extrusionEntity = (ksEntity)_part.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
             var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
@@ -137,6 +140,20 @@ namespace ChandelierPlugin.Model
             extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
             extrusionDef.SetSketch(sketch);
             extrusionEntity.Create();
+
+            return extrusionDef;
+        }
+
+        private void CreateCircularCopy(int count, object definition)
+        {
+            ksEntity entity = _part.NewEntity((short)Obj3dType.o3d_circularCopy);
+            ksCircularCopyDefinition copyDefinition = entity.GetDefinition();
+            copyDefinition.SetCopyParamAlongDir(count, 360, true, false);
+            ksEntity baseAxisOz = _part.GetDefaultEntity((short)Obj3dType.o3d_axisOZ);
+            copyDefinition.SetAxis(baseAxisOz);
+            ksEntityCollection entityCollection = copyDefinition.GetOperationArray();
+            entityCollection.Add(definition);
+            entity.Create();
         }
     }
 }
