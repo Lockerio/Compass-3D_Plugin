@@ -141,6 +141,7 @@
                     SetTextFormElements();
                     _parameterFormElements[parameterType]["textBox"].
                         BackColor = _defaultColor;
+                    buttonBuild.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -155,6 +156,7 @@
                         Text = message;
                     _parameterFormElements[parameterType]["textBox"].
                         BackColor = _errorColor;
+                    buttonBuild.Enabled = false;
                 }
             }
         }
