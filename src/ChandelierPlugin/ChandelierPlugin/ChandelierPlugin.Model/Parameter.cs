@@ -7,6 +7,17 @@
     public class Parameter
     {
         /// <summary>
+        /// Инициализирует новый экземпляр класса Parameter с дефолтными
+        /// значениями.
+        /// </summary>
+        public Parameter()
+        {
+            CurrentValue = 5;
+            MaxValue = 10;
+            MinValue = 1;
+        }
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса Parameter с указанными
         /// значениями.
         /// </summary>
@@ -18,6 +29,10 @@
             double maxValue,
             double minValue)
         {
+            Validator.ValidateNonNegative(minValue);
+            Validator.ValidateMinMax(minValue, maxValue);
+            Validator.ValidateRange(currentValue, minValue, maxValue);
+
             CurrentValue = currentValue;
             MaxValue = maxValue;
             MinValue = minValue;

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChandelierPlugin.View", "Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChandelierPlugin.Model", "ChandelierPlugin.Model\ChandelierPlugin.Model.csproj", "{C0AFFEC4-8FD8-4336-94F2-50B4696EB7A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChandelierPlugin.Tests", "ChandelierPlugin.Tests\ChandelierPlugin.Tests.csproj", "{40954281-AEF7-4594-9A0B-04D7FB5FC727}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C0AFFEC4-8FD8-4336-94F2-50B4696EB7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0AFFEC4-8FD8-4336-94F2-50B4696EB7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0AFFEC4-8FD8-4336-94F2-50B4696EB7A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40954281-AEF7-4594-9A0B-04D7FB5FC727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40954281-AEF7-4594-9A0B-04D7FB5FC727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40954281-AEF7-4594-9A0B-04D7FB5FC727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40954281-AEF7-4594-9A0B-04D7FB5FC727}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

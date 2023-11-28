@@ -9,6 +9,56 @@
     public static class Validator
     {
         /// <summary>
+        /// Проверяет, что текущее значение находится в пределах от
+        /// минимального до максимального.
+        /// </summary>
+        /// <param name="currentValue">Текущее значение параметра.</param>
+        /// <param name="minValue">Минимальное значение параметра.</param>
+        /// <param name="maxValue">Максимальное значение параметра.</param>
+        public static void ValidateRange(
+            double currentValue,
+            double minValue,
+            double maxValue)
+        {
+            if (currentValue < minValue || currentValue > maxValue)
+            {
+                var message = "Текущее значение должно быть в "
+                              + "пределах от минимального до максимального.";
+                throw new ArgumentException(message);
+            }
+        }
+
+        /// <summary>
+        /// Проверяет, что минимальное значение не больше максимального.
+        /// </summary>
+        /// <param name="minValue">Минимальное значение параметра.</param>
+        /// <param name="maxValue">Максимальное значение параметра.</param>
+        public static void ValidateMinMax(double minValue, double maxValue)
+        {
+            if (minValue > maxValue)
+            {
+                var message = "Минимальное значение не может "
+                              + "быть больше максимального.";
+                throw new ArgumentException(message);
+            }
+        }
+
+        /// <summary>
+        /// Проверяет, что число не меньше нуля.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="parameterName">Имя параметра,
+        /// используемое в исключении.</param>
+        public static void ValidateNonNegative(double value)
+        {
+            if (value <= 0)
+            {
+                var message = "Значение должно быть больше нуля.";
+                throw new ArgumentException(message);
+            }
+        }
+
+        /// <summary>
         /// Проверяет, что значение находится в заданном числовом диапазоне.
         /// </summary>
         /// <param name="value">Проверяемое число.</param>
