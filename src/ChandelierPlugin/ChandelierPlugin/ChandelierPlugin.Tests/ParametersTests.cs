@@ -81,6 +81,7 @@
                 minValue);
 
             // Act, Assert
+            // TODO: поменять на отлов конкретного исключения
             Assert.Throws<Exception>(() =>
                 parameters.AssertParameter(parameterType, parameter, value));
         }
@@ -105,6 +106,7 @@
             20,
             25,
             15)]
+        // TODO: добавить еще два входных параметра: массив ParameterType и массив ожидаемых значений
         public void ChangeParametersRangeValues_Parameter_UpdateRangeValues(
             ParameterType parameterType,
             double currentValue,
@@ -128,6 +130,8 @@
                     Assert.AreEqual(
                         parameters.ParametersDict[ParameterType.
                             RadiusInnerCircle].MaxValue,
+
+                        // TODO: Магическое число
                         parameter.CurrentValue - 49);
                     break;
 

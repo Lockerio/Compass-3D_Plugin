@@ -25,10 +25,8 @@
         /// Словарь, содержащий элементы управления формы для каждого типа
         /// параметра.
         /// </summary>
-        private readonly Dictionary<
-            ParameterType,
-            Dictionary<string, Control>> _parameterFormElements =
-            new Dictionary<ParameterType, Dictionary<string, Control>>();
+        private readonly Dictionary<ParameterType, Dictionary<string, Control>>
+            _parameterFormElements = new Dictionary<ParameterType, Dictionary<string, Control>>();
 
         /// <summary>
         /// Цвет по умолчанию для элементов формы.
@@ -68,6 +66,7 @@
                 ParameterType.RadiusOuterCircle,
                 new Dictionary<string, Control>
             {
+                // TODO: вынести в константы
                 { "textBox", textBox_RadiusOuterCircle },
                 { "label", label_RadiusOuterCircle },
             });
@@ -183,6 +182,7 @@
         /// <summary>
         /// Обработчик события нажатия кнопки "Построить".
         /// </summary>
+        // TODO: С большой буквы
         private void buttonBuild_Click(object sender, EventArgs e)
         {
             _builder.BuildDetail(_parameters);

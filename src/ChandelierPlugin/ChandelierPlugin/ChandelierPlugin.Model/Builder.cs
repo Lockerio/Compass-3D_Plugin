@@ -39,7 +39,10 @@
         /// </summary>
         public double LampRadius;
 
+        // TODO: XML
         private readonly Wrapper _wrapper = new Wrapper();
+
+        // TODO: Нужно? Не используется
         private readonly KompasObject _kompas;
         private readonly ksPart _part;
         private readonly ksDocument3D _doc3D;
@@ -51,6 +54,7 @@
         {
             if (!_wrapper.ConnectToKompas())
             {
+                // TODO: выбрасывать исключение.
                 Console.WriteLine("Не удалось подключиться к KOMPAS-3D.");
                 return;
             }
@@ -100,8 +104,7 @@
             double radiusOuterCircle,
             double radiusBaseCircle)
         {
-            var sketch = _wrapper.
-                CreateSketch(Obj3dType.o3d_planeXOY, null);
+            var sketch = _wrapper.CreateSketch(Obj3dType.o3d_planeXOY, null);
             var document2d = (ksDocument2D)sketch.BeginEdit();
 
             document2d.ksCircle(0, 0, radiusBaseCircle, 1);
@@ -118,8 +121,9 @@
         /// <param name="radius">Радиус труб и проводов.</param>
         private void BuildWiresTubes(double radius)
         {
-            var offsetWidthEntity = _wrapper.
-                CreateOffsetPlane(Obj3dType.o3d_planeXOZ, RadiusBaseCircle);
+            var offsetWidthEntity = _wrapper.CreateOffsetPlane(
+                Obj3dType.o3d_planeXOZ,
+                RadiusBaseCircle);
             var sketch = _wrapper.
                 CreateSketch(Obj3dType.o3d_planeXOZ, offsetWidthEntity);
             var document2d = (ksDocument2D)sketch.BeginEdit();

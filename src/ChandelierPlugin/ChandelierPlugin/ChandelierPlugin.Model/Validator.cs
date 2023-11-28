@@ -47,8 +47,6 @@
         /// Проверяет, что число не меньше нуля.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
-        /// <param name="parameterName">Имя параметра,
-        /// используемое в исключении.</param>
         public static void ValidateNonNegative(double value)
         {
             if (value <= 0)
@@ -76,6 +74,7 @@
                 return;
             }
 
+            // TODO: нужно выбрасывать конкретное исключение
             throw new Exception("Ваше число не попадает в диапазон"
                                 + " доступных чисел!");
         }

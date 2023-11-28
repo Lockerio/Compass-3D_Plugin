@@ -64,17 +64,19 @@
         /// Изменяет значения диапазона других параметров в зависимости от
         /// изменения указанного параметра.
         /// </summary>
-        /// <param name="parameterType">Тип параметра, который был
-        /// изменен.</param>
+        /// <param name="parameterType">Тип параметра, который был изменен.</param>
         /// <param name="parameter">Измененный параметр.</param>
         public void ChangeParametersRangeValues(
             ParameterType parameterType,
             Parameter parameter)
         {
+            // TODO: Добавить default, в котором будет выбрасываться исключение
             switch (parameterType)
             {
                 case ParameterType.RadiusOuterCircle:
                     ParametersDict[ParameterType.RadiusInnerCircle].
+
+                        // TODO: 49 магическое число. Вынести в константы
                         MaxValue = parameter.CurrentValue - 49;
                     break;
 
