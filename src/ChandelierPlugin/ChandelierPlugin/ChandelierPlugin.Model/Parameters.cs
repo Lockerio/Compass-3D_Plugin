@@ -15,18 +15,6 @@
             new Dictionary<ParameterType, Parameter>();
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса Parameters с
-        /// предоставленным словарем параметров.
-        /// </summary>
-        /// <param name="parametersDict">Словарь параметров с их
-        /// типами.</param>
-        public Parameters(
-            Dictionary<ParameterType, Parameter> parametersDict)
-        {
-            ParametersDict = parametersDict;
-        }
-
-        /// <summary>
         /// Инициализирует новый экземпляр класса Parameters со значениями
         /// параметров по умолчанию.
         /// </summary>
@@ -46,7 +34,7 @@
                 new Parameter(60, 80, 40));
             ParametersDict.Add(
                 ParameterType.LampsAmount,
-                new Parameter(12, 109, 0));
+                new Parameter(12, 109, 1));
             ParametersDict.Add(
                 ParameterType.LampRadius,
                 new Parameter(20, 25, 15));
@@ -79,7 +67,7 @@
         /// <param name="parameterType">Тип параметра, который был
         /// изменен.</param>
         /// <param name="parameter">Измененный параметр.</param>
-        private void ChangeParametersRangeValues(
+        public void ChangeParametersRangeValues(
             ParameterType parameterType,
             Parameter parameter)
         {
