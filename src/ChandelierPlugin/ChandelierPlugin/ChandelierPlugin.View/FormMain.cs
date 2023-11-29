@@ -40,6 +40,16 @@
             Color.FromArgb(255, 192, 192);
 
         /// <summary>
+        /// Строка обозначающая textBox.
+        /// </summary>
+        private readonly string _textBox = "textBox";
+
+        /// <summary>
+        /// Строка обозначающая label.
+        /// </summary>
+        private readonly string _label = "label";
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса FormMain.
         /// </summary>
         public FormMain()
@@ -66,44 +76,44 @@
                 ParameterType.RadiusOuterCircle,
                 new Dictionary<string, Control>
             {
-                // TODO: вынести в константы
-                { "textBox", textBox_RadiusOuterCircle },
-                { "label", label_RadiusOuterCircle },
+                // TODO: вынести в константы (+)
+                { _textBox, textBox_RadiusOuterCircle },
+                { _label, label_RadiusOuterCircle },
             });
             _parameterFormElements.Add(
                 ParameterType.RadiusInnerCircle,
                 new Dictionary<string, Control>
             {
-                { "textBox", textBox_RadiusInnerCircle },
-                { "label", label_RadiusInnerCircle },
+                { _textBox, textBox_RadiusInnerCircle },
+                { _label, label_RadiusInnerCircle },
             });
             _parameterFormElements.Add(
                 ParameterType.RadiusBaseCircle,
                 new Dictionary<string, Control>
             {
-                { "textBox", textBox_RadiusBaseCircle },
-                { "label", label_RadiusBaseCircle },
+                { _textBox, textBox_RadiusBaseCircle },
+                { _label, label_RadiusBaseCircle },
             });
             _parameterFormElements.Add(
                 ParameterType.FoundationThickness,
                 new Dictionary<string, Control>
             {
-                { "textBox", textBox_FoundationThickness },
-                { "label", label_FoundationThickness },
+                { _textBox, textBox_FoundationThickness },
+                { _label, label_FoundationThickness },
             });
             _parameterFormElements.Add(
                 ParameterType.LampsAmount,
                 new Dictionary<string, Control>
             {
-                { "textBox", textBox_LampsAmount },
-                { "label", label_LampsAmount },
+                { _textBox, textBox_LampsAmount },
+                { _label, label_LampsAmount },
             });
             _parameterFormElements.Add(
                 ParameterType.LampRadius,
                 new Dictionary<string, Control>
             {
-                { "textBox", textBox_LampRadius },
-                { "label", label_LampRadius },
+                { _textBox, textBox_LampRadius },
+                { _label, label_LampRadius },
             });
 
             SetTextFormElements();
@@ -138,7 +148,7 @@
                         _parameters.ParametersDict[parameterType],
                         Convert.ToDouble(textBox.Text));
                     SetTextFormElements();
-                    _parameterFormElements[parameterType]["textBox"].
+                    _parameterFormElements[parameterType][_textBox].
                         BackColor = _defaultColor;
                     buttonBuild.Enabled = true;
                 }
@@ -151,9 +161,9 @@
                     var message =
                         ex.Message + "\nВведите число от "
                                    + $"{_minValue} до {_maxValue}";
-                    _parameterFormElements[parameterType]["label"].
+                    _parameterFormElements[parameterType][_label].
                         Text = message;
-                    _parameterFormElements[parameterType]["textBox"].
+                    _parameterFormElements[parameterType][_textBox].
                         BackColor = _errorColor;
                     buttonBuild.Enabled = false;
                 }
@@ -172,9 +182,9 @@
                 var _key = item.Key;
                 var _value = item.Value;
 
-                _parameterFormElements[_key]["textBox"].Text =
+                _parameterFormElements[_key][_textBox].Text =
                     _value.CurrentValue.ToString();
-                _parameterFormElements[_key]["label"].Text =
+                _parameterFormElements[_key][_label].Text =
                     $"от {_value.MinValue} до {_value.MaxValue}";
             }
         }
@@ -182,8 +192,8 @@
         /// <summary>
         /// Обработчик события нажатия кнопки "Построить".
         /// </summary>
-        // TODO: С большой буквы
-        private void buttonBuild_Click(object sender, EventArgs e)
+        // TODO: С большой буквы (+)
+        private void ButtonBuild_Click(object sender, EventArgs e)
         {
             _builder.BuildDetail(_parameters);
         }

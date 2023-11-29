@@ -81,8 +81,8 @@
                 minValue);
 
             // Act, Assert
-            // TODO: поменять на отлов конкретного исключения
-            Assert.Throws<Exception>(() =>
+            // TODO: поменять на отлов конкретного исключения (+)
+            Assert.Throws<ArgumentException>(() =>
                 parameters.AssertParameter(parameterType, parameter, value));
         }
 
@@ -90,28 +90,38 @@
             ParameterType.RadiusInnerCircle,
             700,
             751,
-            149)]
+            149,
+            new[] {ParameterType.RadiusOuterCircle},
+            new[] { 800.0, 1000.0, 749.0 })]
         [TestCase(
             ParameterType.RadiusOuterCircle,
             800,
             1000,
-            749)]
+            749,
+            new[] { ParameterType.RadiusInnerCircle },
+            new[] { 700.0, 751.0, 150.0 })]
         [TestCase(
             ParameterType.RadiusBaseCircle,
             100,
             651,
-            100)]
+            100,
+            new[] { ParameterType.RadiusInnerCircle },
+            new[] { 700.0, 750.0, 149.0 })]
         [TestCase(
             ParameterType.LampRadius,
             20,
             25,
-            15)]
-        // TODO: добавить еще два входных параметра: массив ParameterType и массив ожидаемых значений
+            15,
+            new[] { ParameterType.LampsAmount },
+            new[] { 12.0, 109.0, 1.0 })]
+        // TODO: добавить еще два входных параметра: массив ParameterType и массив ожидаемых значений (+)
         public void ChangeParametersRangeValues_Parameter_UpdateRangeValues(
             ParameterType parameterType,
             double currentValue,
             double maxValue,
-            double minValue)
+            double minValue,
+            ParameterType[] parametersTypes,
+            double[] expectedParameters)
         {
             // Arrange
             var parameters = new Parameters();
@@ -119,55 +129,27 @@
                 currentValue,
                 maxValue,
                 minValue);
+            var step = 0;
 
             // Act
             parameters.ChangeParametersRangeValues(parameterType, parameter);
 
             // Assert
-            switch (parameterType)
+            foreach (var item in parametersTypes)
             {
-                case ParameterType.RadiusOuterCircle:
-                    Assert.AreEqual(
-                        parameters.ParametersDict[ParameterType.
-                            RadiusInnerCircle].MaxValue,
+                var currentParameter = parameters.ParametersDict[item];
 
-                        // TODO: Магическое число
-                        parameter.CurrentValue - 49);
-                    break;
+                Assert.AreEqual(
+                    expectedParameters[step],
+                    currentParameter.CurrentValue);
+                Assert.AreEqual(
+                    expectedParameters[step + 1],
+                    currentParameter.MaxValue);
+                Assert.AreEqual(
+                    expectedParameters[step + 2],
+                    currentParameter.MinValue);
 
-                case ParameterType.RadiusInnerCircle:
-                    Assert.AreEqual(
-                        parameters.ParametersDict[ParameterType.
-                                RadiusOuterCircle].MinValue,
-                        parameter.CurrentValue + 49);
-                    Assert.AreEqual(
-                        parameters.ParametersDict[ParameterType.
-                                RadiusBaseCircle].MaxValue,
-                        parameter.CurrentValue - 49);
-                    break;
-
-                case ParameterType.RadiusBaseCircle:
-                    Assert.AreEqual(
-                        parameters.ParametersDict[ParameterType.
-                                RadiusInnerCircle].MinValue,
-                        parameter.CurrentValue + 49);
-                    break;
-
-                case ParameterType.LampRadius:
-                    double _innerRadius = parameters.
-                        ParametersDict[ParameterType.
-                        RadiusInnerCircle].CurrentValue;
-                    double _lampRadius = parameters.
-                        ParametersDict[ParameterType.
-                        LampRadius].CurrentValue;
-                    int _maxValue = (int)(_innerRadius * Math.PI /
-                                          _lampRadius);
-
-                    Assert.AreEqual(
-                        parameters.ParametersDict[ParameterType.
-                                LampsAmount].MaxValue,
-                        _maxValue);
-                    break;
+                step += 3;
             }
         }
     }

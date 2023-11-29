@@ -15,6 +15,11 @@
             new Dictionary<ParameterType, Parameter>();
 
         /// <summary>
+        /// Отступ от возможных граничных параметров детали.
+        /// </summary>
+        private readonly double _borderOffset = 49;
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса Parameters со значениями
         /// параметров по умолчанию.
         /// </summary>
@@ -70,26 +75,26 @@
             ParameterType parameterType,
             Parameter parameter)
         {
-            // TODO: Добавить default, в котором будет выбрасываться исключение
+            // TODO: Добавить default, в котором будет выбрасываться исключение (+)
             switch (parameterType)
             {
                 case ParameterType.RadiusOuterCircle:
                     ParametersDict[ParameterType.RadiusInnerCircle].
 
-                        // TODO: 49 магическое число. Вынести в константы
-                        MaxValue = parameter.CurrentValue - 49;
+                        // TODO: 49 магическое число. Вынести в константы (+)
+                        MaxValue = parameter.CurrentValue - _borderOffset;
                     break;
 
                 case ParameterType.RadiusInnerCircle:
                     ParametersDict[ParameterType.RadiusOuterCircle].
-                        MinValue = parameter.CurrentValue + 49;
+                        MinValue = parameter.CurrentValue + _borderOffset;
                     ParametersDict[ParameterType.RadiusBaseCircle].
-                        MaxValue = parameter.CurrentValue - 49;
+                        MaxValue = parameter.CurrentValue - _borderOffset;
                     break;
 
                 case ParameterType.RadiusBaseCircle:
                     ParametersDict[ParameterType.RadiusInnerCircle].
-                        MinValue = parameter.CurrentValue + 49;
+                        MinValue = parameter.CurrentValue + _borderOffset;
                     break;
 
                 case ParameterType.LampRadius:
@@ -103,6 +108,16 @@
                     ParametersDict[ParameterType.LampsAmount].MaxValue =
                         _maxValue;
                     break;
+
+                case ParameterType.FoundationThickness:
+                    break;
+
+                case ParameterType.LampsAmount:
+                    break;
+
+                default:
+                    var message = "Введен некорректный тип параметра";
+                    throw new ArgumentException(message);
             }
         }
     }

@@ -39,12 +39,14 @@
         /// </summary>
         public double LampRadius;
 
-        // TODO: XML
+        // TODO: XML (+)
+
+        /// <summary>
+        /// Экземпляр класса обертки.
+        /// </summary>
         private readonly Wrapper _wrapper = new Wrapper();
 
-        // TODO: Нужно? Не используется
-        private readonly KompasObject _kompas;
-        private readonly ksPart _part;
+        // TODO: Нужно? Не используется (+)
         private readonly ksDocument3D _doc3D;
 
         /// <summary>
@@ -54,15 +56,13 @@
         {
             if (!_wrapper.ConnectToKompas())
             {
-                // TODO: выбрасывать исключение.
-                Console.WriteLine("Не удалось подключиться к KOMPAS-3D.");
+                // TODO: выбрасывать исключение. (+)
+                throw new ArgumentException("Не удалось подключиться к KOMPAS-3D.");
                 return;
             }
 
-            _kompas = _wrapper.Kompas;
             _doc3D = _wrapper.CreateDocument3D();
             _doc3D.Create();
-            _part = _wrapper.Part;
         }
 
         /// <summary>

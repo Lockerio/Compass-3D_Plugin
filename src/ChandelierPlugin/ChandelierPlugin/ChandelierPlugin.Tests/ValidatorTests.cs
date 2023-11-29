@@ -89,7 +89,7 @@ public class ValidatorTests
         double maxValue)
     {
         // Act, Assert
-        Assert.Throws<Exception>(() =>
+        Assert.Throws<ArgumentException>(() =>
             Validator.AssertNumberIsInRange(value, minValue, maxValue));
     }
 }
