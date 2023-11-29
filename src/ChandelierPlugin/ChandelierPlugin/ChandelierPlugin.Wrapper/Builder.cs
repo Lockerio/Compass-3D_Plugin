@@ -47,12 +47,12 @@
         private readonly Wrapper _wrapper = new Wrapper();
 
         // TODO: Нужно? Не используется (+)
-        private readonly ksDocument3D _doc3D;
+        public ksDocument3D doc3D;
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса Builder.
+        /// Создает новое подключению к компасу.
         /// </summary>
-        public Builder()
+        public void CheckOrCreateKompasConnection()
         {
             if (!_wrapper.ConnectToKompas())
             {
@@ -60,9 +60,15 @@
                 throw new ArgumentException("Не удалось подключиться к KOMPAS-3D.");
                 return;
             }
+        }
 
-            _doc3D = _wrapper.CreateDocument3D();
-            _doc3D.Create();
+        /// <summary>
+        /// Создает новый документ.
+        /// </summary>
+        public void CreateNewDocument()
+        {
+            doc3D = _wrapper.CreateDocument3D();
+            doc3D.Create();
         }
 
         /// <summary>

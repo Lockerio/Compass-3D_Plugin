@@ -195,6 +195,8 @@
         // TODO: С большой буквы (+)
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
+            _builder.CheckOrCreateKompasConnection();
+            _builder.CreateNewDocument();
             _builder.BuildDetail(_parameters);
         }
     }
