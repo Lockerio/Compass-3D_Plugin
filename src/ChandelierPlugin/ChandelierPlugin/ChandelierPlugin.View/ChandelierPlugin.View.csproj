@@ -90,6 +90,10 @@
       <Project>{c0affec4-8fd8-4336-94f2-50b4696eb7a9}</Project>
       <Name>ChandelierPlugin.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChandelierPlugin.Wrapper\ChandelierPlugin.Wrapper.csproj">
+      <Project>{bc14ea30-f724-4143-b67c-29514a746dd5}</Project>
+      <Name>ChandelierPlugin.Wrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
