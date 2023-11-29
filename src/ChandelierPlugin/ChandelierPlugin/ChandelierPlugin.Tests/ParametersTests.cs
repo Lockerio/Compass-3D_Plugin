@@ -152,5 +152,56 @@
                 step += 3;
             }
         }
+
+        [TestCase(
+            ParameterType.LampsAmount,
+            20,
+            25,
+            15)]
+        [TestCase(
+            ParameterType.FoundationThickness,
+            20,
+            25,
+            15)]
+        public void ChangeParametersRangeValues_Parameter_NothingHappens(
+            ParameterType parameterType,
+            double currentValue,
+            double maxValue,
+            double minValue)
+        {
+            // Arrange
+            var parameters = new Parameters();
+            Parameter parameter = new Parameter(
+                currentValue,
+                maxValue,
+                minValue);
+
+            // Act, Assert
+            Assert.DoesNotThrow(() =>
+                parameters.ChangeParametersRangeValues(parameterType, parameter));
+        }
+
+        [TestCase(
+            ParameterType.Unknown,
+            20,
+            25,
+            15)]
+        public void ChangeParametersRangeValues_Parameter_ThrowException(
+            ParameterType parameterType,
+            double currentValue,
+            double maxValue,
+            double minValue)
+        {
+            // Arrange
+            var parameters = new Parameters();
+            Parameter parameter = new Parameter(
+                currentValue,
+                maxValue,
+                minValue);
+
+            // Act, Assert
+            Assert.Throws<ArgumentException>(() =>
+                parameters.ChangeParametersRangeValues(parameterType, parameter));
+        }
     }
 }
