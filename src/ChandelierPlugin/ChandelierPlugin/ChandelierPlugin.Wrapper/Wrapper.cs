@@ -1,6 +1,7 @@
 ﻿namespace ChandelierPlugin.Model
 {
     using System;
+    using System.Runtime.InteropServices;
     using Kompas6API5;
     using Kompas6Constants3D;
 
@@ -33,20 +34,31 @@
         {
             try
             {
-                Kompas = (KompasObject)Activator.CreateInstance(
-                    Type.GetTypeFromProgID("KOMPAS.Application.5"));
-                Kompas.Visible = true;
-                Kompas.ActivateControllerAPI();
-
-                Console.WriteLine(
-                    "Успешно подключено к активной сессии KOMPAS-3D");
+                Kompas = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
+                Console.WriteLine("Уже подключено к активной сессии KOMPAS-3D");
                 return true;
+            }
+            catch (COMException)
+            {
+                try
+                {
+                    Kompas = (KompasObject)Activator.CreateInstance(
+                        Type.GetTypeFromProgID("KOMPAS.Application.5"));
+                    Kompas.Visible = true;
+                    Kompas.ActivateControllerAPI();
+
+                    Console.WriteLine("Успешно подключено к активной сессии KOMPAS-3D");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ошибка при подключении к активной сессии KOMPAS-3D: " + ex.Message);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(
-                    "Ошибка при подключении к активной сессии KOMPAS-3D: "
-                    + ex.Message);
+                Console.WriteLine("Неожиданная ошибка: " + ex.Message);
                 return false;
             }
         }
