@@ -21,11 +21,6 @@
         public KompasObject Kompas { get; private set; }
 
         /// <summary>
-        /// Получает Компонент исполнения KOMPAS-3D.
-        /// </summary>
-        public ksPart Part { get; private set; }
-
-        /// <summary>
         /// Подключается к активной сессии KOMPAS-3D.
         /// </summary>
         /// <returns>True, если подключение успешно.
