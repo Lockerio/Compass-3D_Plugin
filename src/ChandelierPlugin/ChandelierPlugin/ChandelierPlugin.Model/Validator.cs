@@ -74,7 +74,6 @@
                 return;
             }
 
-            // TODO: нужно выбрасывать конкретное исключение (+)
             var message = "Ваше число не попадает в диапазон доступных чисел!";
             throw new ArgumentException(message);
         }

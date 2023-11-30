@@ -75,13 +75,10 @@
             ParameterType parameterType,
             Parameter parameter)
         {
-            // TODO: Добавить default, в котором будет выбрасываться исключение (+)
             switch (parameterType)
             {
                 case ParameterType.RadiusOuterCircle:
                     ParametersDict[ParameterType.RadiusInnerCircle].
-
-                        // TODO: 49 магическое число. Вынести в константы (+)
                         MaxValue = parameter.CurrentValue - _borderOffset;
                     break;
 

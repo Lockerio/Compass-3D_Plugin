@@ -76,7 +76,6 @@
                 ParameterType.RadiusOuterCircle,
                 new Dictionary<string, Control>
             {
-                // TODO: вынести в константы (+)
                 { _textBox, textBox_RadiusOuterCircle },
                 { _label, label_RadiusOuterCircle },
             });
@@ -192,7 +191,6 @@
         /// <summary>
         /// Обработчик события нажатия кнопки "Построить".
         /// </summary>
-        // TODO: С большой буквы (+)
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
             _builder.CheckOrCreateKompasConnection();

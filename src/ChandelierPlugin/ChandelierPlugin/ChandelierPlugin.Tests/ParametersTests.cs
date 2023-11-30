@@ -81,7 +81,6 @@
                 minValue);
 
             // Act, Assert
-            // TODO: поменять на отлов конкретного исключения (+)
             Assert.Throws<ArgumentException>(() =>
                 parameters.AssertParameter(parameterType, parameter, value));
         }
@@ -114,7 +113,6 @@
             15,
             new[] { ParameterType.LampsAmount },
             new[] { 12.0, 109.0, 1.0 })]
-        // TODO: добавить еще два входных параметра: массив ParameterType и массив ожидаемых значений (+)
         public void ChangeParametersRangeValues_Parameter_UpdateRangeValues(
             ParameterType parameterType,
             double currentValue,
