@@ -44,9 +44,12 @@
         /// </summary>
         private readonly Wrapper _wrapper = new Wrapper();
 
-        // TODO: XML
-        // TODO: RSDN
-        public ksDocument3D doc3D;
+        // TODO: XML (+)
+        // TODO: RSDN (+)
+        /// <summary>
+        /// Документ в среде КОМПАС-3Д.
+        /// </summary>
+        public ksDocument3D Doc3D;
 
         /// <summary>
         /// Создает новое подключению к компасу.
@@ -64,8 +67,8 @@
         /// </summary>
         public void CreateNewDocument()
         {
-            doc3D = _wrapper.CreateDocument3D();
-            doc3D.Create();
+            Doc3D = _wrapper.CreateDocument3D();
+            Doc3D.Create();
         }
 
         /// <summary>
