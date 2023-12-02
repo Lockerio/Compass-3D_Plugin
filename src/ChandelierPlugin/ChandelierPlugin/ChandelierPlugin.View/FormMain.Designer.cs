@@ -47,6 +47,14 @@
             this.label_RadiusInnerCircle = new System.Windows.Forms.Label();
             this.label_RadiusOuterCircle = new System.Windows.Forms.Label();
             this.buttonBuild = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox_ParameterMultiplier = new System.Windows.Forms.TextBox();
+            this.textBox_LayersAmount = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label_ParameterMultiplier = new System.Windows.Forms.Label();
+            this.label_LayersAmount = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -202,7 +210,7 @@
             // 
             // buttonBuild
             // 
-            this.buttonBuild.Location = new System.Drawing.Point(726, 289);
+            this.buttonBuild.Location = new System.Drawing.Point(741, 378);
             this.buttonBuild.Name = "buttonBuild";
             this.buttonBuild.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.buttonBuild.Size = new System.Drawing.Size(100, 32);
@@ -211,11 +219,83 @@
             this.buttonBuild.UseVisualStyleBackColor = true;
             this.buttonBuild.Click += new System.EventHandler(this.ButtonBuild_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(429, 349);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 16);
+            this.label7.TabIndex = 24;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(428, 305);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 16);
+            this.label8.TabIndex = 23;
+            // 
+            // textBox_ParameterMultiplier
+            // 
+            this.textBox_ParameterMultiplier.Location = new System.Drawing.Point(274, 346);
+            this.textBox_ParameterMultiplier.Name = "textBox_ParameterMultiplier";
+            this.textBox_ParameterMultiplier.Size = new System.Drawing.Size(144, 22);
+            this.textBox_ParameterMultiplier.TabIndex = 22;
+            // 
+            // textBox_LayersAmount
+            // 
+            this.textBox_LayersAmount.Location = new System.Drawing.Point(274, 302);
+            this.textBox_LayersAmount.Name = "textBox_LayersAmount";
+            this.textBox_LayersAmount.Size = new System.Drawing.Size(144, 22);
+            this.textBox_LayersAmount.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(45, 349);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(167, 16);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Множитель параметров:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(45, 308);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(130, 16);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Количество слоев:";
+            // 
+            // label_ParameterMultiplier
+            // 
+            this.label_ParameterMultiplier.AutoSize = true;
+            this.label_ParameterMultiplier.Location = new System.Drawing.Point(428, 349);
+            this.label_ParameterMultiplier.Name = "label_ParameterMultiplier";
+            this.label_ParameterMultiplier.Size = new System.Drawing.Size(0, 16);
+            this.label_ParameterMultiplier.TabIndex = 25;
+            // 
+            // label_LayersAmount
+            // 
+            this.label_LayersAmount.AutoSize = true;
+            this.label_LayersAmount.Location = new System.Drawing.Point(428, 305);
+            this.label_LayersAmount.Name = "label_LayersAmount";
+            this.label_LayersAmount.Size = new System.Drawing.Size(0, 16);
+            this.label_LayersAmount.TabIndex = 26;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 333);
+            this.ClientSize = new System.Drawing.Size(853, 422);
+            this.Controls.Add(this.label_LayersAmount);
+            this.Controls.Add(this.label_ParameterMultiplier);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBox_ParameterMultiplier);
+            this.Controls.Add(this.textBox_LayersAmount);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.buttonBuild);
             this.Controls.Add(this.label_LampRadius);
             this.Controls.Add(this.label_LampsAmount);
@@ -267,6 +347,14 @@
         private System.Windows.Forms.Label label_RadiusInnerCircle;
         private System.Windows.Forms.Label label_RadiusOuterCircle;
         private System.Windows.Forms.Button buttonBuild;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox_ParameterMultiplier;
+        private System.Windows.Forms.TextBox textBox_LayersAmount;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_ParameterMultiplier;
+        private System.Windows.Forms.Label label_LayersAmount;
     }
 }
 

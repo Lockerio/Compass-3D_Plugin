@@ -36,6 +36,16 @@
         LampRadius,
 
         /// <summary>
+        /// Количество слоев.
+        /// </summary>
+        LayersAmount,
+
+        /// <summary>
+        /// Множитель параметров.
+        /// </summary>
+        ParameterMultiplier,
+
+        /// <summary>
         /// Неизвестный тип параметра.
         /// </summary>
         Unknown,
