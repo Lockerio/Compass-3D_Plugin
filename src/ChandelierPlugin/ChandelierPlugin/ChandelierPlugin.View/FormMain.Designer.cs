@@ -241,6 +241,7 @@
             this.textBox_ParameterMultiplier.Name = "textBox_ParameterMultiplier";
             this.textBox_ParameterMultiplier.Size = new System.Drawing.Size(144, 22);
             this.textBox_ParameterMultiplier.TabIndex = 22;
+            this.textBox_ParameterMultiplier.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // textBox_LayersAmount
             // 
@@ -248,6 +249,7 @@
             this.textBox_LayersAmount.Name = "textBox_LayersAmount";
             this.textBox_LayersAmount.Size = new System.Drawing.Size(144, 22);
             this.textBox_LayersAmount.TabIndex = 21;
+            this.textBox_LayersAmount.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // label9
             // 

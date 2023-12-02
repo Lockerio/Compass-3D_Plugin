@@ -40,6 +40,16 @@
         public double LampRadius;
 
         /// <summary>
+        /// Количество слоев.
+        /// </summary>
+        public double LayersAmount;
+
+        /// <summary>
+        /// Множитель параметров.
+        /// </summary>
+        public double ParameterMultiplier;
+
+        /// <summary>
         /// Экземпляр класса обертки.
         /// </summary>
         private readonly Wrapper _wrapper = new Wrapper();
@@ -90,6 +100,10 @@
                 ParametersDict[ParameterType.LampsAmount].CurrentValue;
             LampRadius = parameters.
                 ParametersDict[ParameterType.LampRadius].CurrentValue;
+            LayersAmount = parameters.
+                ParametersDict[ParameterType.LayersAmount].CurrentValue;
+            ParameterMultiplier = parameters.
+                ParametersDict[ParameterType.ParameterMultiplier].CurrentValue;
 
             BuildBase(
                 RadiusInnerCircle,

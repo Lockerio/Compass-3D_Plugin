@@ -75,45 +75,59 @@
             _parameterFormElements.Add(
                 ParameterType.RadiusOuterCircle,
                 new Dictionary<string, Control>
-            {
-                { _textBox, textBox_RadiusOuterCircle },
-                { _label, label_RadiusOuterCircle },
-            });
+                {
+                    { _textBox, textBox_RadiusOuterCircle },
+                    { _label, label_RadiusOuterCircle },
+                });
             _parameterFormElements.Add(
                 ParameterType.RadiusInnerCircle,
                 new Dictionary<string, Control>
-            {
-                { _textBox, textBox_RadiusInnerCircle },
-                { _label, label_RadiusInnerCircle },
-            });
+                {
+                    { _textBox, textBox_RadiusInnerCircle },
+                    { _label, label_RadiusInnerCircle },
+                });
             _parameterFormElements.Add(
                 ParameterType.RadiusBaseCircle,
                 new Dictionary<string, Control>
-            {
-                { _textBox, textBox_RadiusBaseCircle },
-                { _label, label_RadiusBaseCircle },
-            });
+                {
+                    { _textBox, textBox_RadiusBaseCircle },
+                    { _label, label_RadiusBaseCircle },
+                });
             _parameterFormElements.Add(
                 ParameterType.FoundationThickness,
                 new Dictionary<string, Control>
-            {
-                { _textBox, textBox_FoundationThickness },
-                { _label, label_FoundationThickness },
-            });
+                {
+                    { _textBox, textBox_FoundationThickness },
+                    { _label, label_FoundationThickness },
+                });
             _parameterFormElements.Add(
                 ParameterType.LampsAmount,
                 new Dictionary<string, Control>
-            {
-                { _textBox, textBox_LampsAmount },
-                { _label, label_LampsAmount },
-            });
+                {
+                    { _textBox, textBox_LampsAmount },
+                    { _label, label_LampsAmount },
+                });
             _parameterFormElements.Add(
                 ParameterType.LampRadius,
                 new Dictionary<string, Control>
-            {
-                { _textBox, textBox_LampRadius },
-                { _label, label_LampRadius },
-            });
+                {
+                    { _textBox, textBox_LampRadius },
+                    { _label, label_LampRadius },
+                });
+            _parameterFormElements.Add(
+                ParameterType.LayersAmount,
+                new Dictionary<string, Control>
+                {
+                    { _textBox, textBox_LayersAmount },
+                    { _label, label_LayersAmount },
+                });
+            _parameterFormElements.Add(
+                ParameterType.ParameterMultiplier,
+                new Dictionary<string, Control>
+                {
+                    { _textBox, textBox_ParameterMultiplier },
+                    { _label, label_ParameterMultiplier },
+                });
 
             SetTextFormElements();
         }

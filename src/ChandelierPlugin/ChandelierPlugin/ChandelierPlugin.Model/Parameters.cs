@@ -43,6 +43,12 @@
             ParametersDict.Add(
                 ParameterType.LampRadius,
                 new Parameter(20, 25, 15));
+            ParametersDict.Add(
+                ParameterType.LayersAmount,
+                new Parameter(1, 5, 1));
+            ParametersDict.Add(
+                ParameterType.ParameterMultiplier,
+                new Parameter(1, 3, 0.3));
         }
 
         /// <summary>
@@ -110,6 +116,12 @@
                     break;
 
                 case ParameterType.LampsAmount:
+                    break;
+
+                case ParameterType.LayersAmount:
+                    break;
+
+                case ParameterType.ParameterMultiplier:
                     break;
 
                 default:
