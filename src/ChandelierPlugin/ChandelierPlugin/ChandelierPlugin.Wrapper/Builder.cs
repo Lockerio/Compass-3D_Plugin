@@ -49,6 +49,9 @@
         /// </summary>
         public double ParameterMultiplier;
 
+        /// <summary>
+        /// Расстояние между слоями.
+        /// </summary>
         public double LayerHeight = 0;
 
         /// <summary>
@@ -116,6 +119,8 @@
                     LayerHeight);
                 BuildWiresTubes(LayerHeight, 15);
                 BuildLamps(LayerHeight, LampsAmount, LampRadius);
+                BuildFastening(LayerHeight, 60);
+
                 LayerHeight += -600 + FoundationThickness;
 
                 RadiusInnerCircle *= ParameterMultiplier;
@@ -130,15 +135,16 @@
         /// <param name="radiusInnerCircle">Радиус внутреннего круга.</param>
         /// <param name="radiusOuterCircle">Радиус внешнего круга.</param>
         /// <param name="radiusBaseCircle">Радиус базового круга.</param>
+        /// <param name="heightOffset">Отступ слоя по высоте.</param>
         private void BuildBase(
             double radiusInnerCircle,
             double radiusOuterCircle,
             double radiusBaseCircle,
-            double height)
+            double heightOffset)
         {
             var offsetWidthEntity = _wrapper.CreateOffsetPlane(
                 Obj3dType.o3d_planeXOY,
-                height);
+                heightOffset);
 
             var sketch = _wrapper.CreateSketch(Obj3dType.o3d_planeXOY, offsetWidthEntity);
             var document2d = (ksDocument2D)sketch.BeginEdit();
@@ -155,7 +161,8 @@
         /// Строит трубы под провода.
         /// </summary>
         /// <param name="radius">Радиус труб и проводов.</param>
-        private void BuildWiresTubes(double height, double radius)
+        /// <param name="heightOffset">Отступ слоя по высоте.</param>
+        private void BuildWiresTubes(double heightOffset, double radius)
         {
             var offsetWidthEntity = _wrapper.CreateOffsetPlane(
                 Obj3dType.o3d_planeXOZ,
@@ -166,7 +173,7 @@
 
             document2d.ksCircle(
                 0,
-                height - (FoundationThickness / 2),
+                heightOffset - (FoundationThickness / 2),
                 radius,
                 1);
             sketch.EndEdit();
@@ -185,11 +192,12 @@
         /// </summary>
         /// <param name="lampsAmount">Количество ламп.</param>
         /// <param name="lampRadius">Радиус лампы.</param>
-        private void BuildLamps(double height, int lampsAmount, double lampRadius)
+        /// <param name="heightOffset">Отступ слоя по высоте.</param>
+        private void BuildLamps(double heightOffset, int lampsAmount, double lampRadius)
         {
             var offsetWidthEntity = _wrapper.CreateOffsetPlane(
                 Obj3dType.o3d_planeXOY,
-                height);
+                heightOffset);
             var sketch = _wrapper.
                 CreateSketch(Obj3dType.o3d_planeXOY, offsetWidthEntity);
             var document2d = (ksDocument2D)sketch.BeginEdit();
@@ -201,6 +209,26 @@
             var extrusionDef = _wrapper.
                 CreateExtrusion(sketch, 20, false);
             _wrapper.CreateCircularCopy(lampsAmount, extrusionDef);
+        }
+
+        /// <summary>
+        /// Строит крепление между слоями.
+        /// </summary>
+        /// <param name="heightOffset">Отступ основания крепления каждого слоя.</param>
+        /// <param name="radius">Радиус крепления.</param>
+        private void BuildFastening(double heightOffset, double radius)
+        {
+            var offsetWidthEntity = _wrapper.CreateOffsetPlane(
+                Obj3dType.o3d_planeXOY,
+                heightOffset - FoundationThickness);
+            var sketch = _wrapper.
+                CreateSketch(Obj3dType.o3d_planeXOY, offsetWidthEntity);
+            var document2d = (ksDocument2D)sketch.BeginEdit();
+
+            document2d.ksCircle(0, 0, radius, 1);
+            sketch.EndEdit();
+
+            _wrapper.CreateExtrusionToNearSurface(sketch, false);
         }
     }
 }
