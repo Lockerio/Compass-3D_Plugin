@@ -161,6 +161,16 @@
             20,
             25,
             15)]
+        [TestCase(
+            ParameterType.LayersAmount,
+            20,
+            25,
+            15)]
+        [TestCase(
+            ParameterType.ParameterMultiplier,
+            20,
+            25,
+            15)]
         public void ChangeParametersRangeValues_Parameter_NothingHappens(
             ParameterType parameterType,
             double currentValue,
