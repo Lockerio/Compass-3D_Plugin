@@ -49,6 +49,8 @@
         /// </summary>
         public double ParameterMultiplier;
 
+        public double LayerHeight = 0;
+
         /// <summary>
         /// Экземпляр класса обертки.
         /// </summary>
@@ -105,12 +107,21 @@
             ParameterMultiplier = parameters.
                 ParametersDict[ParameterType.ParameterMultiplier].CurrentValue;
 
-            BuildBase(
-                RadiusInnerCircle,
-                RadiusOuterCircle,
-                RadiusBaseCircle);
-            BuildWiresTubes(15);
-            BuildLamps(LampsAmount, LampRadius);
+            for (var i = 0; i < LayersAmount; i++)
+            {
+                BuildBase(
+                    RadiusInnerCircle,
+                    RadiusOuterCircle,
+                    RadiusBaseCircle,
+                    LayerHeight);
+                BuildWiresTubes(LayerHeight, 15);
+                BuildLamps(LayerHeight, LampsAmount, LampRadius);
+                LayerHeight += -600 + FoundationThickness;
+
+                RadiusInnerCircle *= ParameterMultiplier;
+                RadiusOuterCircle *= ParameterMultiplier;
+                LampsAmount *= (int)ParameterMultiplier;
+            }
         }
 
         /// <summary>
@@ -122,9 +133,14 @@
         private void BuildBase(
             double radiusInnerCircle,
             double radiusOuterCircle,
-            double radiusBaseCircle)
+            double radiusBaseCircle,
+            double height)
         {
-            var sketch = _wrapper.CreateSketch(Obj3dType.o3d_planeXOY, null);
+            var offsetWidthEntity = _wrapper.CreateOffsetPlane(
+                Obj3dType.o3d_planeXOY,
+                height);
+
+            var sketch = _wrapper.CreateSketch(Obj3dType.o3d_planeXOY, offsetWidthEntity);
             var document2d = (ksDocument2D)sketch.BeginEdit();
 
             document2d.ksCircle(0, 0, radiusBaseCircle, 1);
@@ -139,7 +155,7 @@
         /// Строит трубы под провода.
         /// </summary>
         /// <param name="radius">Радиус труб и проводов.</param>
-        private void BuildWiresTubes(double radius)
+        private void BuildWiresTubes(double height, double radius)
         {
             var offsetWidthEntity = _wrapper.CreateOffsetPlane(
                 Obj3dType.o3d_planeXOZ,
@@ -150,7 +166,7 @@
 
             document2d.ksCircle(
                 0,
-                -FoundationThickness / 2,
+                height - (FoundationThickness / 2),
                 radius,
                 1);
             sketch.EndEdit();
@@ -169,10 +185,13 @@
         /// </summary>
         /// <param name="lampsAmount">Количество ламп.</param>
         /// <param name="lampRadius">Радиус лампы.</param>
-        private void BuildLamps(int lampsAmount, double lampRadius)
+        private void BuildLamps(double height, int lampsAmount, double lampRadius)
         {
+            var offsetWidthEntity = _wrapper.CreateOffsetPlane(
+                Obj3dType.o3d_planeXOY,
+                height);
             var sketch = _wrapper.
-                CreateSketch(Obj3dType.o3d_planeXOY, null);
+                CreateSketch(Obj3dType.o3d_planeXOY, offsetWidthEntity);
             var document2d = (ksDocument2D)sketch.BeginEdit();
 
             var offset = (RadiusOuterCircle + RadiusInnerCircle) / 2;
