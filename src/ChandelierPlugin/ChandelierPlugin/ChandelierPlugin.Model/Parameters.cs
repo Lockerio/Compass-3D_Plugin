@@ -48,7 +48,7 @@
                 new Parameter(1, 5, 1));
             ParametersDict.Add(
                 ParameterType.ParameterMultiplier,
-                new Parameter(1, 2, 0.3));
+                new Parameter(1, 1.5, 0.3));
         }
 
         /// <summary>
