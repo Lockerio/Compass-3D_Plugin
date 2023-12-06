@@ -127,6 +127,8 @@
                 RadiusOuterCircle *= ParameterMultiplier;
                 LampsAmount *= (int)ParameterMultiplier;
             }
+
+            LayerHeight = 0;
         }
 
         /// <summary>
