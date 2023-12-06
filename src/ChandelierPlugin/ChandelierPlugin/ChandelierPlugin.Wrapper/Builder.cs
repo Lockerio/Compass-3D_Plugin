@@ -105,7 +105,7 @@
                 ParametersDict[ParameterType.LampsAmount].CurrentValue;
             LampRadius = parameters.
                 ParametersDict[ParameterType.LampRadius].CurrentValue;
-            LayersAmount = parameters.
+            LayersAmount = (int)parameters.
                 ParametersDict[ParameterType.LayersAmount].CurrentValue;
             ParameterMultiplier = parameters.
                 ParametersDict[ParameterType.ParameterMultiplier].CurrentValue;
