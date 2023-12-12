@@ -9,6 +9,7 @@
     /// </summary>
     public class Builder
     {
+        // TODO: сделать поля приватными
         /// <summary>
         /// Получает или устанавливает радиус внутреннего круга.
         /// </summary>
@@ -59,11 +60,11 @@
         /// </summary>
         private readonly Wrapper _wrapper = new Wrapper();
 
-        // TODO: XML (+)
-        // TODO: RSDN (+)
         /// <summary>
         /// Документ в среде КОМПАС-3Д.
         /// </summary>
+        // TODO: private
+        // TODO: Нужен?
         public ksDocument3D Doc3D;
 
         /// <summary>
@@ -121,6 +122,7 @@
                 BuildLamps(LayerHeight, LampsAmount, LampRadius);
                 BuildFastening(LayerHeight, 60);
 
+                // TODO: магическое число
                 LayerHeight += -600 + FoundationThickness;
 
                 RadiusInnerCircle *= ParameterMultiplier;
