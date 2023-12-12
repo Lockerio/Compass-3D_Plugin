@@ -85,6 +85,47 @@
                 parameters.AssertParameter(parameterType, parameter, value));
         }
 
+        [TestCase(new[]
+        {
+            ParameterType.RadiusOuterCircle,
+            ParameterType.RadiusInnerCircle,
+            ParameterType.RadiusBaseCircle,
+            ParameterType.FoundationThickness,
+            ParameterType.LampsAmount,
+            ParameterType.LampRadius,
+            ParameterType.LayersAmount,
+            ParameterType.ParameterMultiplier
+        }, new[]
+        {
+            800.0,
+            700.0,
+            100.0,
+            60.0,
+            12.0,
+            20.0,
+            1.0,
+            1.0
+        })]
+        public void GetParametersCurrentValues_CurrentValuesAreEqual(
+            ParameterType[] parametersTypes,
+            double[] currentValues)
+        {
+            // Arrange
+            var parameters = new Parameters();
+            var parametersDict =
+                parameters.GetParametersCurrentValues();
+
+            // Act
+            for (var i = 0; i < parametersTypes.Length; i++)
+            {
+                var type = parametersTypes[i];
+                var currentValue = currentValues[i];
+
+                // Assert
+                Assert.AreEqual(currentValue, parametersDict[type]);
+            }
+        }
+
         [TestCase(
             ParameterType.RadiusInnerCircle,
             700,
