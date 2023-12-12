@@ -20,9 +20,7 @@
             while (count < 50)
             {
                 const double gigabyteInByte = 0.000000000931322574615478515625;
-                builder.CheckOrCreateKompasConnection();
-                builder.CreateNewDocument();
-                builder.BuildDetail(parameters);
+                builder.BuildDetail(parameters.GetParametersCurrentValues());
                 var computerInfo = new ComputerInfo();
                 var usedMemory = (computerInfo.TotalPhysicalMemory
                                   - computerInfo.AvailablePhysicalMemory)
