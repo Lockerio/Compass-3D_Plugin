@@ -139,10 +139,10 @@
         {
             if (sender is TextBox textBox)
             {
-                string textBoxName = textBox.Name;
-                ParameterType parameterType = ParameterType.Unknown;
+                var textBoxName = textBox.Name;
+                var parameterType = ParameterType.Unknown;
 
-                string parameterTypeStr =
+                var parameterTypeStr =
                     textBoxName.Split('_')[1];
 
                 foreach (var item in _parameterFormElements.Keys)
@@ -207,8 +207,6 @@
         /// </summary>
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            _builder.CheckOrCreateKompasConnection();
-            _builder.CreateNewDocument();
             _builder.BuildDetail(_parameters);
         }
     }

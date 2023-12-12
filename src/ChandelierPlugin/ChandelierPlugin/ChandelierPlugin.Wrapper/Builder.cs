@@ -61,33 +61,6 @@
         private readonly Wrapper _wrapper = new Wrapper();
 
         /// <summary>
-        /// Документ в среде КОМПАС-3Д.
-        /// </summary>
-        // TODO: private
-        // TODO: Нужен?
-        public ksDocument3D Doc3D;
-
-        /// <summary>
-        /// Создает новое подключению к компасу.
-        /// </summary>
-        public void CheckOrCreateKompasConnection()
-        {
-            if (!_wrapper.ConnectToKompas())
-            {
-                throw new ArgumentException("Не удалось подключиться к KOMPAS-3D.");
-            }
-        }
-
-        /// <summary>
-        /// Создает новый документ.
-        /// </summary>
-        public void CreateNewDocument()
-        {
-            Doc3D = _wrapper.CreateDocument3D();
-            Doc3D.Create();
-        }
-
-        /// <summary>
         /// Строит деталь на основе заданных параметров.
         /// </summary>
         /// <param name="parameters">Параметры для построения детали.</param>
@@ -110,6 +83,9 @@
                 ParametersDict[ParameterType.LayersAmount].CurrentValue;
             ParameterMultiplier = parameters.
                 ParametersDict[ParameterType.ParameterMultiplier].CurrentValue;
+
+            _wrapper.ConnectToKompas();
+            _wrapper.CreateDocument3D();
 
             for (var i = 0; i < LayersAmount; i++)
             {

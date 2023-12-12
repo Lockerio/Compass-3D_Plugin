@@ -10,28 +10,24 @@
     /// </summary>
     public class Wrapper
     {
-        /// <summary>
-        /// Компонент исполнения.
-        /// </summary>
-        private ksPart _part;
+        public ksPart Part;
 
         /// <summary>
         /// Получает объект KOMPAS-3D.
         /// </summary>
-        public KompasObject Kompas { get; private set; }
+        public KompasObject Kompas { get; set; }
 
         /// <summary>
         /// Подключается к активной сессии KOMPAS-3D.
         /// </summary>
         /// <returns>True, если подключение успешно.
         /// В противном случае - false.</returns>
-        public bool ConnectToKompas()
+        public void ConnectToKompas()
         {
             try
             {
                 Kompas = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
                 Console.WriteLine("Уже подключено к активной сессии KOMPAS-3D");
-                return true;
             }
             catch (COMException)
             {
@@ -43,18 +39,15 @@
                     Kompas.ActivateControllerAPI();
 
                     Console.WriteLine("Успешно подключено к активной сессии KOMPAS-3D");
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Ошибка при подключении к активной сессии KOMPAS-3D: " + ex.Message);
-                    return false;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Неожиданная ошибка: " + ex.Message);
-                return false;
             }
         }
 
@@ -62,14 +55,11 @@
         /// Создает 3D-документ KOMPAS-3D.
         /// </summary>
         /// <returns>Объект 3D-документа KOMPAS-3D.</returns>
-        public ksDocument3D CreateDocument3D()
+        public void CreateDocument3D()
         {
-            ksDocument3D document3D = Kompas.Document3D();
-
+            var document3D = (ksDocument3D)Kompas.Document3D();
             document3D.Create();
-            _part = document3D.GetPart((int)Part_Type.pTop_Part);
-
-            return document3D;
+            Part = (ksPart)document3D.GetPart((short)Part_Type.pTop_Part);
         }
 
         /// <summary>
@@ -80,12 +70,12 @@
         /// <returns>Экземпляр смещенной плоскости.</returns>
         public ksEntity CreateOffsetPlane(Obj3dType plane, double offset)
         {
-            var offsetEntity = (ksEntity)_part.
+            var offsetEntity = (ksEntity)Part.
                 NewEntity((short)Obj3dType.o3d_planeOffset);
             var offsetDef = (ksPlaneOffsetDefinition)offsetEntity.
                 GetDefinition();
 
-            offsetDef.SetPlane((ksEntity)_part.NewEntity((short)plane));
+            offsetDef.SetPlane((ksEntity)Part.NewEntity((short)plane));
             offsetDef.offset = offset;
             offsetDef.direction = false;
             offsetEntity.Create();
@@ -105,9 +95,9 @@
             Obj3dType planeType,
             ksEntity offsetPlane)
         {
-            var plane = (ksEntity)_part.
+            var plane = (ksEntity)Part.
                 GetDefaultEntity((short)planeType);
-            var sketch = (ksEntity)_part.
+            var sketch = (ksEntity)Part.
                 NewEntity((short)Obj3dType.o3d_sketch);
             var ksSketch = (ksSketchDefinition)sketch.GetDefinition();
 
@@ -135,7 +125,7 @@
         public ksBossExtrusionDefinition CreateExtrusion(
             ksSketchDefinition sketch, double depth, bool side = true)
         {
-            var extrusionEntity = (ksEntity)_part.
+            var extrusionEntity = (ksEntity)Part.
                 NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
             var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.
                 GetDefinition();
@@ -162,7 +152,7 @@
             ksSketchDefinition sketch,
             bool side = true)
         {
-            var extrusionEntity = (ksEntity)_part.
+            var extrusionEntity = (ksEntity)Part.
                 NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
             var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.
                 GetDefinition();
@@ -187,7 +177,7 @@
         /// копирования.</param>
         public void CreateCircularCopy(int count, object definition)
         {
-            ksEntity entity = _part.
+            ksEntity entity = Part.
                 NewEntity((short)Obj3dType.o3d_circularCopy);
             ksCircularCopyDefinition copyDefinition = entity.GetDefinition();
             copyDefinition.SetCopyParamAlongDir(
@@ -195,7 +185,7 @@
                 360,
                 true,
                 false);
-            ksEntity baseAxisOz = _part.
+            ksEntity baseAxisOz = Part.
                 GetDefaultEntity((short)Obj3dType.o3d_axisOZ);
             copyDefinition.SetAxis(baseAxisOz);
             ksEntityCollection entityCollection =

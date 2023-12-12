@@ -9,13 +9,6 @@
     public class Parameters
     {
         /// <summary>
-        /// Словарь, содержащий параметры с их типами.
-        /// </summary>
-        // TODO: заменить публичные поля на свойства
-        public Dictionary<ParameterType, Parameter> ParametersDict =
-            new Dictionary<ParameterType, Parameter>();
-
-        /// <summary>
         /// Отступ от возможных граничных параметров детали.
         /// </summary>
         private readonly double _borderOffset = 49;
@@ -26,31 +19,48 @@
         /// </summary>
         public Parameters()
         {
-            ParametersDict.Add(
-                ParameterType.RadiusOuterCircle,
-                new Parameter(800, 1000, 400));
-            ParametersDict.Add(
-                ParameterType.RadiusInnerCircle,
-                new Parameter(700, 750, 150));
-            ParametersDict.Add(
-                ParameterType.RadiusBaseCircle,
-                new Parameter(100, 100, 100));
-            ParametersDict.Add(
-                ParameterType.FoundationThickness,
-                new Parameter(60, 80, 40));
-            ParametersDict.Add(
-                ParameterType.LampsAmount,
-                new Parameter(12, 109, 1));
-            ParametersDict.Add(
-                ParameterType.LampRadius,
-                new Parameter(20, 25, 15));
-            ParametersDict.Add(
-                ParameterType.LayersAmount,
-                new Parameter(1, 5, 1));
-            ParametersDict.Add(
-                ParameterType.ParameterMultiplier,
-                new Parameter(1, 1.5, 0.3));
+            ParametersDict = new Dictionary<ParameterType, Parameter>
+            {
+                {
+                    ParameterType.RadiusOuterCircle,
+                    new Parameter(800, 1000, 400)
+                },
+                {
+                    ParameterType.RadiusInnerCircle,
+                    new Parameter(700, 750, 150)
+                },
+                {
+                    ParameterType.RadiusBaseCircle,
+                    new Parameter(100, 100, 100)
+                },
+                {
+                    ParameterType.FoundationThickness,
+                    new Parameter(60, 80, 40)
+                },
+                {
+                    ParameterType.LampsAmount,
+                    new Parameter(12, 109, 1)
+                },
+                {
+                    ParameterType.LampRadius,
+                    new Parameter(20, 25, 15)
+                },
+                {
+                    ParameterType.LayersAmount,
+                    new Parameter(1, 5, 1)
+                },
+                {
+                    ParameterType.ParameterMultiplier,
+                    new Parameter(1, 1.5, 0.3)
+                }
+            };
         }
+
+        /// <summary>
+        /// Словарь, содержащий параметры с их типами.
+        /// </summary>
+        // TODO: заменить публичные поля на свойства
+        public Dictionary<ParameterType, Parameter> ParametersDict { get; set; }
 
         /// <summary>
         /// Проверяет и задает значение для указанного параметра, а затем
@@ -102,11 +112,11 @@
                     break;
 
                 case ParameterType.LampRadius:
-                    double _innerRadius = ParametersDict[ParameterType.
+                    var _innerRadius = ParametersDict[ParameterType.
                         RadiusInnerCircle].CurrentValue;
-                    double _lampRadius = ParametersDict[ParameterType.
+                    var _lampRadius = ParametersDict[ParameterType.
                         LampRadius].CurrentValue;
-                    int _maxValue = (int)(_innerRadius * Math.PI /
+                    var _maxValue = (int)(_innerRadius * Math.PI /
                                           _lampRadius);
 
                     ParametersDict[ParameterType.LampsAmount].MaxValue =
@@ -114,14 +124,8 @@
                     break;
 
                 case ParameterType.FoundationThickness:
-                    break;
-
                 case ParameterType.LampsAmount:
-                    break;
-
                 case ParameterType.LayersAmount:
-                    break;
-
                 case ParameterType.ParameterMultiplier:
                     break;
 
