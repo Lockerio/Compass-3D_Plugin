@@ -167,13 +167,13 @@
                 }
                 catch (Exception ex)
                 {
-                    Parameter _parameter =
+                    var parameter =
                         _parameters.ParametersDict[parameterType];
-                    var _minValue = _parameter.MinValue;
-                    var _maxValue = _parameter.MaxValue;
+                    var minValue = parameter.MinValue;
+                    var maxValue = parameter.MaxValue;
                     var message =
                         ex.Message + "\nВведите число от "
-                                   + $"{_minValue} до {_maxValue}";
+                                   + $"{minValue} до {maxValue}";
                     _parameterFormElements[parameterType][_label].
                         Text = message;
                     _parameterFormElements[parameterType][_textBox].
@@ -207,7 +207,7 @@
         /// </summary>
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            _builder.BuildDetail(_parameters);
+            _builder.BuildDetail(_parameters.GetParametersCurrentValues());
         }
     }
 }

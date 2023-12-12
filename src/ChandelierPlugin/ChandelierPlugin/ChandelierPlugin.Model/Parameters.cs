@@ -59,8 +59,24 @@
         /// <summary>
         /// Словарь, содержащий параметры с их типами.
         /// </summary>
-        // TODO: заменить публичные поля на свойства
+        // TODO: заменить публичные поля на свойства (+)
         public Dictionary<ParameterType, Parameter> ParametersDict { get; set; }
+
+        /// <summary>
+        /// Получает словарь текущих значений параметров.
+        /// </summary>
+        /// <returns>Словарь, тип параметра - текущее значение параметра.</returns>
+        public Dictionary<ParameterType, double> GetParametersCurrentValues()
+        {
+            var parametersCurrentValues = new Dictionary<ParameterType, double>();
+
+            foreach (var item in ParametersDict)
+            {
+                parametersCurrentValues.Add(item.Key, item.Value.CurrentValue);
+            }
+
+            return parametersCurrentValues;
+        }
 
         /// <summary>
         /// Проверяет и задает значение для указанного параметра, а затем
