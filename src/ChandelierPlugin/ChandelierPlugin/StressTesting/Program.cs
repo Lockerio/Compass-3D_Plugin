@@ -17,7 +17,7 @@
             var streamWriter = new StreamWriter($"log.txt", true);
             Process currentProcess = System.Diagnostics.Process.GetCurrentProcess();
             var count = 0;
-            while (count < 50)
+            while (count < 100)
             {
                 const double gigabyteInByte = 0.000000000931322574615478515625;
                 builder.BuildDetail(parameters.GetParametersCurrentValues());

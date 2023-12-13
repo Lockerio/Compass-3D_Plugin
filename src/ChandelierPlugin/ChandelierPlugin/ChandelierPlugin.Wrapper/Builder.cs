@@ -12,12 +12,12 @@
         // TODO: сделать поля приватными (+)
 
         /// <summary>
-        /// Расстояние между слоями.
+        /// Радиус трубы.
         /// </summary>
         private readonly double _wiresRadius = 15.0;
 
         /// <summary>
-        /// Расстояние между слоями.
+        /// Радиус опоры.
         /// </summary>
         private readonly double _fasteningRadius = 60.0;
 
@@ -27,19 +27,19 @@
         private readonly int _layersOffset = 600;
 
         /// <summary>
+        /// Экземпляр класса обертки.
+        /// </summary>
+        private readonly Wrapper _wrapper = new Wrapper();
+
+        /// <summary>
         /// Словарь текущих значений всех параметров.
         /// </summary>
-        public Dictionary<ParameterType, double> ParametersDict;
+        public Dictionary<ParameterType, double> ParametersDict { get; set; }
 
         /// <summary>
         /// Расстояние между слоями.
         /// </summary>
         public double LayerHeight { get; set; }
-
-        /// <summary>
-        /// Экземпляр класса обертки.
-        /// </summary>
-        private readonly Wrapper _wrapper = new Wrapper();
 
         /// <summary>
         /// Строит деталь на основе заданных параметров.
@@ -111,8 +111,6 @@
         /// <summary>
         /// Строит трубы под провода.
         /// </summary>
-        /// <param name="radius">Радиус труб и проводов.</param>
-        /// <param name="heightOffset">Отступ слоя по высоте.</param>
         private void BuildWiresTubes()
         {
             var offsetWidthEntity = _wrapper.CreateOffsetPlane(
@@ -141,9 +139,6 @@
         /// <summary>
         /// Строит лампы детали.
         /// </summary>
-        /// <param name="lampsAmount">Количество ламп.</param>
-        /// <param name="lampRadius">Радиус лампы.</param>
-        /// <param name="heightOffset">Отступ слоя по высоте.</param>
         private void BuildLamps()
         {
             var offsetWidthEntity = _wrapper.CreateOffsetPlane(
@@ -172,8 +167,6 @@
         /// <summary>
         /// Строит крепление между слоями.
         /// </summary>
-        /// <param name="heightOffset">Отступ основания крепления каждого слоя.</param>
-        /// <param name="radius">Радиус крепления.</param>
         private void BuildFastening()
         {
             var offsetWidthEntity = _wrapper.CreateOffsetPlane(

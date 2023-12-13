@@ -10,7 +10,7 @@
     /// </summary>
     public class Wrapper
     {
-        public ksPart Part;
+        public ksPart Part { get; set; }
 
         /// <summary>
         /// Получает объект KOMPAS-3D.
@@ -123,7 +123,9 @@
         /// (true - в одну сторону, false - в обратную).</param>
         /// <returns>Определение созданного выдавливания.</returns>
         public ksBossExtrusionDefinition CreateExtrusion(
-            ksSketchDefinition sketch, double depth, bool side = true)
+            ksSketchDefinition sketch,
+            double depth,
+            bool side = true)
         {
             var extrusionEntity = (ksEntity)Part.
                 NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
