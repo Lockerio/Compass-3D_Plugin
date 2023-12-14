@@ -9,7 +9,6 @@
     /// </summary>
     public class Builder
     {
-        // TODO: сделать поля приватными (+)
 
         /// <summary>
         /// Радиус трубы.
@@ -60,7 +59,6 @@
                 BuildLamps();
                 BuildFastening();
 
-                // TODO: магическое число (+)
                 LayerHeight += -_layersOffset + ParametersDict[ParameterType.FoundationThickness];
 
                 ParametersDict[ParameterType.RadiusInnerCircle] *=

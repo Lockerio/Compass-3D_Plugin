@@ -59,7 +59,6 @@
         /// <summary>
         /// Словарь, содержащий параметры с их типами.
         /// </summary>
-        // TODO: заменить публичные поля на свойства (+)
         public Dictionary<ParameterType, Parameter> ParametersDict { get; set; }
 
         /// <summary>
